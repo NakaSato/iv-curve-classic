@@ -10,28 +10,11 @@ This script demonstrates comprehensive I-V curve analysis using:
 
 import numpy as np
 import matplotlib.pyplot as plt
-import warnings
-import pandas as pd
-from pathlib import Path
-from datetime import datetime
-from typing import Dict, List, Tuple, Any
-
-# Suppress specific numpy warnings that occur during data processing
-warnings.filterwarnings('ignore', category=RuntimeWarning, message='Mean of empty slice')
-warnings.filterwarnings('ignore', category=RuntimeWarning, message='invalid value encountered in scalar divide')
-
-"""
-Enhanced Main Script for I-V Curve Analysis with Real Inverter Data and PV Module Specifications
-
-This script demonstrates comprehensive I-V curve analysis using:
-- Real ZNSHINESOLAR ZXM7-UHLD144 570W module specifications
-- Actual inverter performance data from 10 solar inverters
-- Environmental corrections based on manufacturer coefficients
-- Economic impact analysis with real-world parameters
-"""
-
-import numpy as np
-import matplotlib.pyplot as plt
+import matplotlib.patches as patches
+from matplotlib.patches import FancyBboxPatch
+import matplotlib.colors as mcolors
+from matplotlib.gridspec import GridSpec
+import seaborn as sns
 import warnings
 import pandas as pd
 from pathlib import Path
@@ -39,9 +22,53 @@ from datetime import datetime
 from typing import Dict, List, Tuple, Any, Optional
 import re
 
-# Suppress specific numpy warnings that occur during data processing
-warnings.filterwarnings('ignore', category=RuntimeWarning, message='Mean of empty slice')
-warnings.filterwarnings('ignore', category=RuntimeWarning, message='invalid value encountered in scalar divide')
+# Enhanced plotting configuration for professional visualizations
+plt.style.use('default')
+plt.rcParams.update({
+    'figure.facecolor': 'white',
+    'axes.facecolor': '#f8f9fa',
+    'axes.edgecolor': '#dee2e6',
+    'axes.linewidth': 1.2,
+    'axes.grid': True,
+    'grid.color': '#e9ecef',
+    'grid.linestyle': '-',
+    'grid.linewidth': 0.8,
+    'grid.alpha': 0.7,
+    'font.family': ['DejaVu Sans', 'Arial', 'sans-serif'],
+    'font.size': 11,
+    'axes.titlesize': 14,
+    'axes.labelsize': 12,
+    'xtick.labelsize': 10,
+    'ytick.labelsize': 10,
+    'legend.fontsize': 10,
+    'legend.framealpha': 0.9,
+    'legend.fancybox': True,
+    'legend.shadow': True,
+    'axes.spines.top': False,
+    'axes.spines.right': False,
+    'figure.dpi': 100,
+    'savefig.dpi': 300,
+    'savefig.bbox': 'tight',
+    'savefig.facecolor': 'white'
+})
+
+# Professional color palette
+COLORS = {
+    'primary': '#2E86C1',      # Professional blue
+    'secondary': '#28B463',     # Success green  
+    'accent': '#F39C12',       # Warning orange
+    'danger': '#E74C3C',       # Error red
+    'dark': '#34495E',         # Dark blue-grey
+    'light': '#BDC3C7',       # Light grey
+    'info': '#8E44AD',        # Purple
+    'success': '#27AE60',     # Dark green
+    'warning': '#F1C40F',     # Yellow
+    'muted': '#95A5A6'        # Muted grey
+}
+
+# Enhanced gradient colors for multi-series plots
+GRADIENT_COLORS = ['#2E86C1', '#28B463', '#F39C12', '#E74C3C', '#8E44AD', 
+                   '#17A2B8', '#6C757D', '#FD7E14', '#20C997', '#6F42C1']
 
 from iv_curve_classic.data_loader import InverterDataLoader, get_real_data_samples
 from iv_curve_classic.iv_analyzer import IVAnalyzer
@@ -460,39 +487,457 @@ def display_enhanced_analysis_results(result: Dict[str, Any]):
 
 
 def create_enhanced_analysis_plot(result: Dict[str, Any]):
-    """Create enhanced analysis plot with real data and module specifications"""
+    """Create enhanced analysis plot with professional styling and real data"""
     
-    fig, ((ax1, ax2), (ax3, ax4)) = plt.subplots(2, 2, figsize=(16, 12))
-    fig.suptitle(f'Enhanced I-V Analysis: {result["inverter_id"]} with {result["module_specs"].get("name", "Unknown Module")}', 
-                 fontsize=14, fontweight='bold')
+    # Create figure with custom styling
+    fig = plt.figure(figsize=(18, 14), facecolor='white')
+    fig.patch.set_facecolor('white')
+    
+    # Create custom grid layout for better spacing
+    gs = GridSpec(3, 3, figure=fig, hspace=0.35, wspace=0.3, 
+                  height_ratios=[1.2, 1.2, 0.8], width_ratios=[1, 1, 0.8])
+    
+    # Enhanced title with module information
+    module_name = result["module_specs"].get("name", "Unknown Module")
+    inverter_id = result["inverter_id"].replace('_', ' ').title()
+    fig.suptitle(f'📊 Enhanced I-V Analysis: {inverter_id}\n🔋 {module_name}', 
+                 fontsize=16, fontweight='bold', y=0.96, color=COLORS['dark'])
     
     # Get raw data
     vpv = result['raw_data']['vpv']
     ipv = result['raw_data']['ipv']
     ppv = result['raw_data']['ppv']
     
-    # Plot 1: Real data scatter with theoretical curve
-    ax1.scatter(vpv, ipv, alpha=0.6, s=30, c='blue', label='Real Data Points')
-    ax1.axhline(y=result['isc'], color='r', linestyle='--', alpha=0.7, label=f"ISC = {result['isc']:.2f} A")
-    ax1.axvline(x=result['voc'], color='g', linestyle='--', alpha=0.7, label=f"VOC = {result['voc']:.1f} V")
-    ax1.scatter([result['v_mp']], [result['i_mp']], color='red', s=100, zorder=5, 
-               label=f"MPP ({result['v_mp']:.1f}V, {result['i_mp']:.1f}A)")
+    # Enhanced Plot 1: I-V Characteristic with professional styling
+    ax1 = fig.add_subplot(gs[0, 0])
     
-    ax1.set_xlabel('Voltage (V)')
-    ax1.set_ylabel('Current (A)')
-    ax1.set_title('I-V Characteristic from Real Data')
-    ax1.grid(True, alpha=0.3)
-    ax1.legend()
+    # Create density-based coloring for scatter points
+    scatter = ax1.scatter(vpv, ipv, alpha=0.7, s=35, c=vpv, cmap='viridis', 
+                         edgecolors='white', linewidth=0.5, label='📍 Real Data Points')
     
-    # Plot 2: Power curve
-    ax2.scatter(vpv, ppv, alpha=0.6, s=30, c='green', label='Real Power Data')
-    ax2.scatter([result['v_mp']], [result['p_max']], color='red', s=100, zorder=5, 
-               label=f"Pmax = {result['p_max']:.0f} W")
-    ax2.set_xlabel('Voltage (V)')
-    ax2.set_ylabel('Power (W)')
-    ax2.set_title('Power-Voltage Curve from Real Data')
-    ax2.grid(True, alpha=0.3)
-    ax2.legend()
+    # Enhanced reference lines
+    ax1.axhline(y=result['isc'], color=COLORS['danger'], linestyle='--', 
+               linewidth=2.5, alpha=0.8, label=f"ISC = {result['isc']:.2f} A")
+    ax1.axvline(x=result['voc'], color=COLORS['secondary'], linestyle='--', 
+               linewidth=2.5, alpha=0.8, label=f"VOC = {result['voc']:.1f} V")
+    
+    # Highlighted Maximum Power Point with enhanced styling
+    ax1.scatter([result['v_mp']], [result['i_mp']], color=COLORS['accent'], 
+               s=200, zorder=10, marker='*', edgecolors=COLORS['dark'], linewidth=2,
+               label=f"⭐ MPP ({result['v_mp']:.1f}V, {result['i_mp']:.1f}A)")
+    
+    # Enhanced axes styling
+    ax1.set_xlabel('Voltage (V)', fontweight='bold', fontsize=12)
+    ax1.set_ylabel('Current (A)', fontweight='bold', fontsize=12)
+    ax1.set_title('🔌 I-V Characteristic Curve', fontweight='bold', fontsize=14, 
+                  color=COLORS['primary'], pad=20)
+    ax1.grid(True, alpha=0.4, linestyle='-', linewidth=0.8)
+    ax1.legend(loc='upper right', framealpha=0.95, shadow=True, fontsize=10)
+    
+    # Add colorbar for voltage gradient
+    cbar = plt.colorbar(scatter, ax=ax1, shrink=0.8, pad=0.02)
+    cbar.set_label('Voltage (V)', fontweight='bold', fontsize=10)
+    
+    # Enhanced Plot 2: Power curve with gradient fill
+    ax2 = fig.add_subplot(gs[0, 1])
+    
+    # Create smooth power curve for better visualization
+    voltage_sorted = np.sort(vpv)
+    power_sorted = np.interp(voltage_sorted, vpv, ppv)
+    
+    # Power curve with gradient fill
+    ax2.plot(voltage_sorted, power_sorted, color=COLORS['primary'], linewidth=3, 
+             alpha=0.8, label='📈 Power Curve')
+    ax2.fill_between(voltage_sorted, power_sorted, alpha=0.3, color=COLORS['primary'])
+    
+    # Scatter plot of actual data points
+    ax2.scatter(vpv, ppv, alpha=0.6, s=25, c=COLORS['info'], 
+               edgecolors='white', linewidth=0.5, label='📊 Measured Data')
+    
+    # Enhanced Maximum Power Point
+    ax2.scatter([result['v_mp']], [result['p_max']], color=COLORS['accent'], 
+               s=250, zorder=10, marker='D', edgecolors=COLORS['dark'], linewidth=2,
+               label=f"💎 Pmax = {result['p_max']:.0f} W")
+    
+    ax2.set_xlabel('Voltage (V)', fontweight='bold', fontsize=12)
+    ax2.set_ylabel('Power (W)', fontweight='bold', fontsize=12)
+    ax2.set_title('⚡ Power-Voltage Characteristic', fontweight='bold', fontsize=14, 
+                  color=COLORS['primary'], pad=20)
+    ax2.grid(True, alpha=0.4, linestyle='-', linewidth=0.8)
+    ax2.legend(loc='upper right', framealpha=0.95, shadow=True, fontsize=10)
+    
+    # Enhanced Plot 3: Module specifications with stylized info box
+    ax3 = fig.add_subplot(gs[0, 2])
+    ax3.axis('off')
+    
+    # Create a fancy info box for module specifications
+    module_specs = result['module_specs']
+    
+    # Create styled text box
+    info_box = FancyBboxPatch((0.05, 0.05), 0.9, 0.9, 
+                              boxstyle="round,pad=0.05", 
+                              facecolor=COLORS['light'], 
+                              edgecolor=COLORS['primary'],
+                              linewidth=2, alpha=0.8)
+    ax3.add_patch(info_box)
+    
+    spec_text = f"""🔋 MODULE SPECIFICATIONS
+
+📋 Model: {module_specs.get('name', 'Unknown')}
+🏭 Manufacturer: {module_specs.get('manufacturer', 'Unknown')}
+⚡ Rated Power: {module_specs.get('rated_power_stc', 0):.0f} W
+🔌 VOC (STC): {module_specs.get('rated_voltage_stc', 0):.2f} V
+⚡ ISC (STC): {module_specs.get('rated_current_stc', 0):.2f} A
+💎 VMP (STC): {module_specs.get('voltage_at_max_power', 0):.2f} V
+⭐ IMP (STC): {module_specs.get('current_at_max_power', 0):.2f} A
+📊 Fill Factor: {module_specs.get('fill_factor_nominal', 0):.3f}
+🎯 Efficiency: {module_specs.get('efficiency_stc', 0):.2f}%
+
+🔧 SYSTEM CONFIG (Est.)
+📐 Modules/String: {result['modules_per_string']}
+🔗 Parallel Strings: {result['strings_in_parallel']}
+🔢 Total Modules: {result['modules_per_string'] * result['strings_in_parallel']}
+📊 Data Points: {result['data_points']}"""
+    
+    ax3.text(0.1, 0.95, spec_text, transform=ax3.transAxes, fontsize=9, 
+            verticalalignment='top', fontfamily='monospace', 
+            color=COLORS['dark'], fontweight='bold')
+    
+    # Enhanced Plot 4: Performance analysis with styled metrics
+    ax4 = fig.add_subplot(gs[1, :])
+    ax4.axis('off')
+    
+    # Create performance metrics dashboard
+    temp_effects = result['temperature_effects']
+    expected_system_power = module_specs.get('rated_power_stc', 570) * result['modules_per_string'] * result['strings_in_parallel']
+    performance_ratio = (result['p_max'] / expected_system_power * 100) if expected_system_power > 0 else 0
+    
+    # Create multiple styled info boxes for different sections
+    sections = [
+        {
+            'title': '📊 MEASURED PERFORMANCE',
+            'x': 0.02, 'width': 0.22,
+            'content': f"""
+Peak Power: {result['p_max']:.0f} W
+Fill Factor: {result['fill_factor']:.3f}
+Performance Ratio: {performance_ratio:.1f}%
+Efficiency: {(result['p_max']/1000):.1f}%""",
+            'color': COLORS['primary']
+        },
+        {
+            'title': '🌡️ TEMPERATURE ANALYSIS',
+            'x': 0.26, 'width': 0.22,
+            'content': f"""
+Average Temp: {result['avg_temperature']:.1f}°C
+Delta from STC: {temp_effects['temperature_delta']:+.1f}°C
+VOC Effect: {temp_effects['voc_effect_percent']:+.2f}%
+ISC Effect: {temp_effects['isc_effect_percent']:+.2f}%
+Power Effect: {temp_effects['power_effect_percent']:+.2f}%""",
+            'color': COLORS['accent']
+        },
+        {
+            'title': '🎯 EXPECTED vs MEASURED',
+            'x': 0.50, 'width': 0.22,
+            'content': f"""
+Expected VOC: {module_specs.get('rated_voltage_stc', 0) * result['modules_per_string'] * temp_effects['expected_voc_factor']:.1f} V
+Measured VOC: {result['voc']:.1f} V
+Expected ISC: {module_specs.get('rated_current_stc', 0) * result['strings_in_parallel'] * temp_effects['expected_isc_factor']:.2f} A
+Measured ISC: {result['isc']:.2f} A""",
+            'color': COLORS['secondary']
+        },
+        {
+            'title': '🏥 SYSTEM HEALTH',
+            'x': 0.74, 'width': 0.22,
+            'content': f"""
+Health Status: {'🟢 Excellent' if performance_ratio > 90 else '🟡 Good' if performance_ratio > 80 else '🟠 Fair' if performance_ratio > 70 else '🔴 Poor'}
+Data Quality: {'🟢 High' if result['data_points'] > 1000 else '🟡 Medium' if result['data_points'] > 100 else '🟠 Low'}
+Temperature: {'🟢 Normal' if abs(temp_effects['temperature_delta']) < 10 else '🟡 Elevated' if temp_effects['temperature_delta'] > 0 else '🔵 Cold'}""",
+            'color': COLORS['info']
+        }
+    ]
+    
+    for section in sections:
+        # Create fancy box for each section
+        section_box = FancyBboxPatch((section['x'], 0.1), section['width'], 0.8, 
+                                    boxstyle="round,pad=0.02", 
+                                    facecolor=section['color'], 
+                                    edgecolor=COLORS['dark'],
+                                    linewidth=1.5, alpha=0.15)
+        ax4.add_patch(section_box)
+        
+        # Add title
+        ax4.text(section['x'] + section['width']/2, 0.85, section['title'], 
+                transform=ax4.transAxes, fontsize=11, fontweight='bold',
+                horizontalalignment='center', color=COLORS['dark'])
+        
+        # Add content
+        ax4.text(section['x'] + 0.01, 0.7, section['content'], 
+                transform=ax4.transAxes, fontsize=9, fontweight='bold',
+                verticalalignment='top', fontfamily='monospace', 
+                color=COLORS['dark'])
+    
+    # Enhanced subplot for efficiency distribution
+    ax5 = fig.add_subplot(gs[2, :2])
+    
+    # Create efficiency comparison chart
+    categories = ['STC Rating', 'Expected\n(Temp Corrected)', 'Measured', 'Performance\nRatio']
+    values = [
+        module_specs.get('efficiency_stc', 22.0),
+        module_specs.get('efficiency_stc', 22.0) * temp_effects['expected_power_factor'],
+        (result['p_max'] / (module_specs.get('rated_power_stc', 570) * result['modules_per_string'] * result['strings_in_parallel'])) * module_specs.get('efficiency_stc', 22.0) if expected_system_power > 0 else 0,
+        performance_ratio
+    ]
+    
+    colors = [COLORS['primary'], COLORS['accent'], COLORS['secondary'], COLORS['info']]
+    bars = ax5.bar(categories, values, color=colors, alpha=0.8, edgecolor=COLORS['dark'], linewidth=1.5)
+    
+    # Add value labels on bars
+    for bar, value in zip(bars, values):
+        height = bar.get_height()
+        ax5.text(bar.get_x() + bar.get_width()/2., height + 0.5,
+                f'{value:.1f}%' if 'Ratio' in categories[bars.index(bar)] else f'{value:.1f}%',
+                ha='center', va='bottom', fontweight='bold', fontsize=10)
+    
+    ax5.set_ylabel('Efficiency / Performance (%)', fontweight='bold', fontsize=12)
+    ax5.set_title('📈 Performance Comparison Dashboard', fontweight='bold', fontsize=14, 
+                  color=COLORS['primary'], pad=20)
+    ax5.grid(True, alpha=0.3, axis='y')
+    ax5.set_ylim(0, max(values) * 1.2)
+    
+    # Final styling touches
+    plt.tight_layout()
+    
+    # Save with enhanced quality
+    filename = f"enhanced_stylish_analysis_{result['inverter_id'].lower()}.png"
+    plt.savefig(filename, dpi=300, bbox_inches='tight', facecolor='white', 
+               edgecolor='none', pad_inches=0.2)
+    print(f"  🎨 Enhanced stylish plot saved as: {filename}")
+    plt.close()
+
+
+def create_fleet_summary_plot(results: List[Dict[str, Any]], analyzer: EnhancedInverterAnalyzer):
+    """Create enhanced fleet summary visualization with professional styling"""
+    
+    # Create figure with enhanced styling
+    fig = plt.figure(figsize=(20, 16), facecolor='white')
+    fig.patch.set_facecolor('white')
+    
+    # Create custom grid layout
+    gs = GridSpec(3, 4, figure=fig, hspace=0.3, wspace=0.3, 
+                  height_ratios=[1, 1, 0.8], width_ratios=[1, 1, 1, 0.8])
+    
+    # Enhanced main title
+    fig.suptitle('🏭 Fleet Analysis Dashboard - Solar Inverter Performance Overview\n🔋 Real Data Analysis with PV Module Specifications', 
+                 fontsize=18, fontweight='bold', y=0.96, color=COLORS['dark'])
+    
+    # Extract data for plotting
+    inverter_names = [r['inverter_id'] for r in results]
+    powers = [r['p_max'] for r in results]
+    fill_factors = [r['fill_factor'] for r in results]
+    temperatures = [r['avg_temperature'] for r in results]
+    estimated_modules = [r['modules_per_string'] * r['strings_in_parallel'] for r in results]
+    
+    # Enhanced Plot 1: Power distribution with gradient bars
+    ax1 = fig.add_subplot(gs[0, 0])
+    
+    # Create gradient effect for bars
+    bars1 = ax1.bar(range(len(powers)), powers, 
+                    color=[GRADIENT_COLORS[i % len(GRADIENT_COLORS)] for i in range(len(powers))],
+                    alpha=0.8, edgecolor=COLORS['dark'], linewidth=1.5)
+    
+    # Add value labels on bars
+    for i, (bar, power) in enumerate(zip(bars1, powers)):
+        height = bar.get_height()
+        ax1.text(bar.get_x() + bar.get_width()/2., height + height*0.01,
+                f'{power:.0f}W', ha='center', va='bottom', fontweight='bold', fontsize=9)
+    
+    ax1.set_xlabel('Inverter ID', fontweight='bold', fontsize=12)
+    ax1.set_ylabel('Peak Power (W)', fontweight='bold', fontsize=12)
+    ax1.set_title('⚡ Peak Power Distribution', fontweight='bold', fontsize=14, 
+                  color=COLORS['primary'], pad=20)
+    ax1.set_xticks(range(len(powers)))
+    ax1.set_xticklabels([name.split('_')[1] for name in inverter_names], rotation=45, fontsize=10)
+    ax1.grid(True, alpha=0.3, axis='y')
+    
+    # Enhanced Plot 2: Fill factor with performance thresholds
+    ax2 = fig.add_subplot(gs[0, 1])
+    
+    # Color code based on fill factor quality
+    ff_colors = [COLORS['success'] if ff > 0.85 else COLORS['warning'] if ff > 0.75 else COLORS['danger'] for ff in fill_factors]
+    bars2 = ax2.bar(range(len(fill_factors)), fill_factors, 
+                    color=ff_colors, alpha=0.8, edgecolor=COLORS['dark'], linewidth=1.5)
+    
+    # Add performance threshold lines
+    ax2.axhline(y=0.85, color=COLORS['success'], linestyle='--', alpha=0.7, linewidth=2, label='Excellent (>0.85)')
+    ax2.axhline(y=0.75, color=COLORS['warning'], linestyle='--', alpha=0.7, linewidth=2, label='Good (>0.75)')
+    
+    # Add value labels
+    for i, (bar, ff) in enumerate(zip(bars2, fill_factors)):
+        height = bar.get_height()
+        ax2.text(bar.get_x() + bar.get_width()/2., height + 0.005,
+                f'{ff:.3f}', ha='center', va='bottom', fontweight='bold', fontsize=9)
+    
+    ax2.set_xlabel('Inverter ID', fontweight='bold', fontsize=12)
+    ax2.set_ylabel('Fill Factor', fontweight='bold', fontsize=12)
+    ax2.set_title('📊 Fill Factor Quality Assessment', fontweight='bold', fontsize=14, 
+                  color=COLORS['primary'], pad=20)
+    ax2.set_xticks(range(len(fill_factors)))
+    ax2.set_xticklabels([name.split('_')[1] for name in inverter_names], rotation=45, fontsize=10)
+    ax2.grid(True, alpha=0.3, axis='y')
+    ax2.legend(loc='upper left', fontsize=9)
+    
+    # Enhanced Plot 3: Temperature vs Performance correlation
+    ax3 = fig.add_subplot(gs[0, 2])
+    
+    # Create enhanced scatter plot with size based on module count
+    scatter = ax3.scatter(temperatures, powers, s=[modules*5 for modules in estimated_modules], 
+                         alpha=0.7, c=fill_factors, cmap='RdYlGn', 
+                         edgecolors=COLORS['dark'], linewidth=1.5)
+    
+    # Add trend line
+    if len(temperatures) > 1:
+        z = np.polyfit(temperatures, powers, 1)
+        p = np.poly1d(z)
+        ax3.plot(sorted(temperatures), p(sorted(temperatures)), 
+                color=COLORS['danger'], linestyle='--', linewidth=2, alpha=0.8, label='Trend Line')
+    
+    ax3.set_xlabel('Average Temperature (°C)', fontweight='bold', fontsize=12)
+    ax3.set_ylabel('Peak Power (W)', fontweight='bold', fontsize=12)
+    ax3.set_title('🌡️ Temperature vs Performance', fontweight='bold', fontsize=14, 
+                  color=COLORS['primary'], pad=20)
+    ax3.grid(True, alpha=0.3)
+    ax3.legend(fontsize=9)
+    
+    # Add colorbar for fill factor
+    cbar = plt.colorbar(scatter, ax=ax3, shrink=0.8, pad=0.02)
+    cbar.set_label('Fill Factor', fontweight='bold', fontsize=10)
+    
+    # Enhanced Plot 4: Fleet summary statistics
+    ax4 = fig.add_subplot(gs[0, 3])
+    ax4.axis('off')
+    
+    # Create comprehensive fleet statistics
+    module_specs = analyzer.module_specs
+    total_estimated_modules = sum(estimated_modules)
+    total_expected_power = total_estimated_modules * module_specs.get('rated_power_stc', 570)
+    total_measured_power = sum(powers)
+    fleet_performance_ratio = (total_measured_power / total_expected_power * 100) if total_expected_power > 0 else 0
+    
+    # Create styled info box
+    info_box = FancyBboxPatch((0.05, 0.05), 0.9, 0.9, 
+                              boxstyle="round,pad=0.05", 
+                              facecolor=COLORS['light'], 
+                              edgecolor=COLORS['primary'],
+                              linewidth=2, alpha=0.8)
+    ax4.add_patch(info_box)
+    
+    summary_text = f"""🏭 FLEET OVERVIEW
+
+📊 Configuration:
+  Total Inverters: {len(results)}
+  Total Modules: {total_estimated_modules}
+  Expected Power: {total_expected_power:.0f} W
+  Measured Power: {total_measured_power:.0f} W
+  Fleet Performance: {fleet_performance_ratio:.1f}%
+
+🔋 Module Specs:
+  Model: {module_specs.get('name', 'Unknown')}
+  Rated Power: {module_specs.get('rated_power_stc', 0):.0f} W
+  Technology: {module_specs.get('technology', 'Unknown')}
+
+📈 Performance Stats:
+  Avg Fill Factor: {np.mean(fill_factors):.3f}
+  FF Range: {min(fill_factors):.3f} - {max(fill_factors):.3f}
+  Avg Temperature: {np.mean(temperatures):.1f}°C
+  Temp Range: {min(temperatures):.1f} - {max(temperatures):.1f}°C
+  Avg Power/Inverter: {np.mean(powers):.0f} W"""
+    
+    ax4.text(0.1, 0.95, summary_text, transform=ax4.transAxes, fontsize=10,
+            verticalalignment='top', fontfamily='monospace', 
+            color=COLORS['dark'], fontweight='bold')
+    
+    # Enhanced Performance Distribution Chart
+    ax5 = fig.add_subplot(gs[1, :2])
+    
+    # Create histogram of performance ratios
+    performance_ratios = [(p / (module_specs.get('rated_power_stc', 570) * est_mod)) * 100 
+                         for p, est_mod in zip(powers, estimated_modules)]
+    
+    bins = np.linspace(min(performance_ratios), max(performance_ratios), 8)
+    hist, bin_edges = np.histogram(performance_ratios, bins=bins)
+    
+    # Create gradient bars for histogram
+    bar_colors = [COLORS['success'] if (bin_edges[i] + bin_edges[i+1])/2 > 90 else 
+                  COLORS['warning'] if (bin_edges[i] + bin_edges[i+1])/2 > 80 else 
+                  COLORS['danger'] for i in range(len(hist))]
+    
+    bars = ax5.bar(bin_edges[:-1], hist, width=np.diff(bin_edges), 
+                   color=bar_colors, alpha=0.8, edgecolor=COLORS['dark'], linewidth=1.5)
+    
+    ax5.set_xlabel('Performance Ratio (%)', fontweight='bold', fontsize=12)
+    ax5.set_ylabel('Number of Inverters', fontweight='bold', fontsize=12)
+    ax5.set_title('📊 Fleet Performance Distribution', fontweight='bold', fontsize=14, 
+                  color=COLORS['primary'], pad=20)
+    ax5.grid(True, alpha=0.3, axis='y')
+    
+    # Enhanced Efficiency Comparison
+    ax6 = fig.add_subplot(gs[1, 2:])
+    
+    # Create box plot for key metrics
+    metrics_data = [powers, [ff*1000 for ff in fill_factors], temperatures, estimated_modules]
+    metrics_labels = ['Power (W)', 'Fill Factor (×1000)', 'Temperature (°C)', 'Module Count']
+    
+    box_plot = ax6.boxplot(metrics_data, labels=metrics_labels, patch_artist=True, 
+                          boxprops=dict(facecolor=COLORS['primary'], alpha=0.7),
+                          medianprops=dict(color=COLORS['dark'], linewidth=2),
+                          whiskerprops=dict(color=COLORS['dark'], linewidth=1.5),
+                          capprops=dict(color=COLORS['dark'], linewidth=1.5))
+    
+    ax6.set_title('📊 Fleet Metrics Distribution', fontweight='bold', fontsize=14, 
+                  color=COLORS['primary'], pad=20)
+    ax6.grid(True, alpha=0.3)
+    
+    # Final summary chart
+    ax7 = fig.add_subplot(gs[2, :])
+    ax7.axis('off')
+    
+    # Create performance summary timeline
+    summary_metrics = {
+        'Total Fleet Power': f"{total_measured_power:.0f} W",
+        'Average Efficiency': f"{np.mean(performance_ratios):.1f}%",
+        'Best Performer': f"{inverter_names[np.argmax(powers)].split('_')[1]} ({max(powers):.0f}W)",
+        'Highest Fill Factor': f"{inverter_names[np.argmax(fill_factors)].split('_')[1]} ({max(fill_factors):.3f})",
+        'Optimal Temperature': f"{temperatures[np.argmin([abs(t-25) for t in temperatures])]:.1f}°C",
+        'System Health': '🟢 Excellent' if fleet_performance_ratio > 90 else '🟡 Good' if fleet_performance_ratio > 80 else '🟠 Fair'
+    }
+    
+    # Create metric cards
+    x_positions = np.linspace(0.05, 0.85, len(summary_metrics))
+    for i, (metric, value) in enumerate(summary_metrics.items()):
+        # Create mini card for each metric
+        card_box = FancyBboxPatch((x_positions[i]-0.06, 0.2), 0.12, 0.6, 
+                                 boxstyle="round,pad=0.02", 
+                                 facecolor=GRADIENT_COLORS[i % len(GRADIENT_COLORS)], 
+                                 edgecolor=COLORS['dark'],
+                                 linewidth=1.5, alpha=0.3)
+        ax7.add_patch(card_box)
+        
+        # Add metric title and value
+        ax7.text(x_positions[i], 0.7, metric, transform=ax7.transAxes, 
+                fontsize=10, fontweight='bold', horizontalalignment='center', 
+                color=COLORS['dark'])
+        ax7.text(x_positions[i], 0.4, value, transform=ax7.transAxes, 
+                fontsize=12, fontweight='bold', horizontalalignment='center', 
+                color=COLORS['dark'])
+    
+    plt.tight_layout()
+    
+    # Save with enhanced quality
+    filename = "enhanced_stylish_fleet_analysis_summary.png"
+    plt.savefig(filename, dpi=300, bbox_inches='tight', facecolor='white', 
+               edgecolor='none', pad_inches=0.3)
+    print(f"\n🎨 Enhanced stylish fleet summary plot saved as: {filename}")
+    plt.close()
     
     # Plot 3: Module specifications and system configuration
     ax3.axis('off')
@@ -591,86 +1036,6 @@ def create_fleet_analysis_summary(results: List[Dict[str, Any]], analyzer: Enhan
     
     # Create fleet summary plot
     create_fleet_summary_plot(results, analyzer)
-
-
-def create_fleet_summary_plot(results: List[Dict[str, Any]], analyzer: EnhancedInverterAnalyzer):
-    """Create fleet summary visualization"""
-    
-    fig, ((ax1, ax2), (ax3, ax4)) = plt.subplots(2, 2, figsize=(16, 12))
-    fig.suptitle('Fleet Analysis Summary - Real Inverter Data with PV Module Specifications', fontsize=14, fontweight='bold')
-    
-    # Extract data for plotting
-    inverter_names = [r['inverter_id'] for r in results]
-    powers = [r['p_max'] for r in results]
-    fill_factors = [r['fill_factor'] for r in results]
-    temperatures = [r['avg_temperature'] for r in results]
-    estimated_modules = [r['modules_per_string'] * r['strings_in_parallel'] for r in results]
-    
-    # Plot 1: Power distribution
-    ax1.bar(range(len(powers)), powers, color='skyblue', alpha=0.7)
-    ax1.set_xlabel('Inverter')
-    ax1.set_ylabel('Peak Power (W)')
-    ax1.set_title('Peak Power by Inverter')
-    ax1.set_xticks(range(len(powers)))
-    ax1.set_xticklabels([name.split('_')[1] for name in inverter_names], rotation=45)
-    ax1.grid(True, alpha=0.3)
-    
-    # Plot 2: Fill factor distribution
-    ax2.bar(range(len(fill_factors)), fill_factors, color='lightgreen', alpha=0.7)
-    ax2.set_xlabel('Inverter')
-    ax2.set_ylabel('Fill Factor')
-    ax2.set_title('Fill Factor by Inverter')
-    ax2.set_xticks(range(len(fill_factors)))
-    ax2.set_xticklabels([name.split('_')[1] for name in inverter_names], rotation=45)
-    ax2.grid(True, alpha=0.3)
-    
-    # Plot 3: Temperature vs Performance
-    ax3.scatter(temperatures, powers, s=100, alpha=0.7, c='orange')
-    ax3.set_xlabel('Average Temperature (°C)')
-    ax3.set_ylabel('Peak Power (W)')
-    ax3.set_title('Temperature vs Performance')
-    ax3.grid(True, alpha=0.3)
-    
-    # Plot 4: System configuration summary
-    ax4.axis('off')
-    ax4.set_title('Fleet Summary Statistics', fontweight='bold')
-    
-    module_specs = analyzer.module_specs
-    total_estimated_modules = sum(estimated_modules)
-    total_expected_power = total_estimated_modules * module_specs.get('rated_power_stc', 570)
-    total_measured_power = sum(powers)
-    fleet_performance_ratio = (total_measured_power / total_expected_power * 100) if total_expected_power > 0 else 0
-    
-    summary_text = f"""
-Fleet Configuration:
-  Total Inverters: {len(results)}
-  Total Estimated Modules: {total_estimated_modules}
-  Expected Fleet Power: {total_expected_power:.0f} W
-  Measured Fleet Power: {total_measured_power:.0f} W
-  Fleet Performance Ratio: {fleet_performance_ratio:.1f}%
-
-Module Specifications:
-  Model: {module_specs.get('name', 'Unknown')}
-  Rated Power: {module_specs.get('rated_power_stc', 0):.0f} W
-  Technology: {module_specs.get('technology', 'Unknown')}
-
-Performance Statistics:
-  Average Fill Factor: {np.mean(fill_factors):.3f}
-  Fill Factor Range: {min(fill_factors):.3f} - {max(fill_factors):.3f}
-  Average Temperature: {np.mean(temperatures):.1f}°C
-  Temperature Range: {min(temperatures):.1f} - {max(temperatures):.1f}°C
-  Average Power per Inverter: {np.mean(powers):.0f} W
-    """
-    ax4.text(0.05, 0.95, summary_text, transform=ax4.transAxes, fontsize=11,
-            verticalalignment='top', fontfamily='monospace')
-    
-    plt.tight_layout()
-    
-    # Save plot
-    filename = "enhanced_fleet_analysis_summary.png"
-    plt.savefig(filename, dpi=300, bbox_inches='tight')
-    print(f"\n📊 Fleet summary plot saved as: {filename}")
-    plt.close()
 
 
 def demonstrate_with_enhanced_synthetic_data(analyzer: EnhancedInverterAnalyzer):
