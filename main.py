@@ -22,6 +22,13 @@ from datetime import datetime
 from typing import Dict, List, Tuple, Any, Optional
 import re
 
+# Suppress matplotlib font warnings for cleaner output
+warnings.filterwarnings('ignore', category=UserWarning, module='matplotlib')
+warnings.filterwarnings('ignore', message='Glyph.*missing from current font')
+warnings.filterwarnings('ignore', message='This figure includes Axes that are not compatible with tight_layout')
+import matplotlib
+matplotlib.set_loglevel("ERROR")
+
 # Enhanced plotting configuration for professional visualizations
 plt.style.use('default')
 plt.rcParams.update({
@@ -69,6 +76,39 @@ COLORS = {
 # Enhanced gradient colors for multi-series plots
 GRADIENT_COLORS = ['#2E86C1', '#28B463', '#F39C12', '#E74C3C', '#8E44AD', 
                    '#17A2B8', '#6C757D', '#FD7E14', '#20C997', '#6F42C1']
+
+# Advanced styling palette for ultra-modern visualizations
+MODERN_PALETTE = {
+    'neon_blue': '#00D4FF',
+    'neon_green': '#39FF14',
+    'neon_orange': '#FF6600',
+    'neon_purple': '#BF00FF',
+    'deep_navy': '#1a1a2e',
+    'electric_violet': '#7209b7',
+    'cyber_yellow': '#FFFF00',
+    'plasma_pink': '#FF1493',
+    'quantum_teal': '#00CED1',
+    'matrix_green': '#00FF41'
+}
+
+# Professional glass effect colors
+GLASS_COLORS = {
+    'glass_blue': '#4A90E280',     # Semi-transparent blue
+    'glass_green': '#5CB85C80',    # Semi-transparent green
+    'glass_orange': '#F0AD4E80',   # Semi-transparent orange
+    'glass_red': '#D9534F80',      # Semi-transparent red
+    'glass_purple': '#9B59B680',   # Semi-transparent purple
+    'glass_teal': '#5BC0DE80'      # Semi-transparent teal
+}
+
+# Custom colormap for sophisticated gradients
+def create_custom_colormap():
+    """Create custom colormap with professional gradient"""
+    from matplotlib.colors import LinearSegmentedColormap
+    colors = ['#1a1a2e', '#16213e', '#0f3460', '#533483', '#7209b7', '#a663cc', '#4cc9f0']
+    n_bins = 256
+    cmap = LinearSegmentedColormap.from_list('professional', colors, N=n_bins)
+    return cmap
 
 from iv_curve_classic.data_loader import InverterDataLoader, get_real_data_samples
 from iv_curve_classic.iv_analyzer import IVAnalyzer
@@ -487,100 +527,184 @@ def display_enhanced_analysis_results(result: Dict[str, Any]):
 
 
 def create_enhanced_analysis_plot(result: Dict[str, Any]):
-    """Create enhanced analysis plot with professional styling and real data"""
+    """Create ultra-enhanced analysis plot with advanced professional styling and real data"""
     
-    # Create figure with custom styling
-    fig = plt.figure(figsize=(18, 14), facecolor='white')
+    # Create figure with custom styling and improved layout
+    fig = plt.figure(figsize=(20, 16), facecolor='white')
     fig.patch.set_facecolor('white')
     
-    # Create custom grid layout for better spacing
-    gs = GridSpec(3, 3, figure=fig, hspace=0.35, wspace=0.3, 
-                  height_ratios=[1.2, 1.2, 0.8], width_ratios=[1, 1, 0.8])
+    # Create custom grid layout for optimal visual balance
+    gs = GridSpec(4, 4, figure=fig, hspace=0.4, wspace=0.35, 
+                  height_ratios=[1.2, 1.2, 0.8, 0.6], width_ratios=[1, 1, 0.8, 0.6])
     
-    # Enhanced title with module information
+    # Enhanced title with gradient background effect
     module_name = result["module_specs"].get("name", "Unknown Module")
     inverter_id = result["inverter_id"].replace('_', ' ').title()
-    fig.suptitle(f'📊 Enhanced I-V Analysis: {inverter_id}\n🔋 {module_name}', 
-                 fontsize=16, fontweight='bold', y=0.96, color=COLORS['dark'])
+    
+    # Create title with advanced styling
+    title_ax = fig.add_subplot(gs[0, :])
+    title_ax.axis('off')
+    
+    # Add gradient background for title
+    title_gradient = np.linspace(0, 1, 256).reshape(1, -1)
+    title_ax.imshow(title_gradient, aspect='auto', cmap=create_custom_colormap(), 
+                   alpha=0.3, extent=(0, 1, 0, 1))
+    
+    title_ax.text(0.5, 0.7, f'📊 Ultra-Enhanced I-V Analysis Dashboard', 
+                  fontsize=20, fontweight='bold', ha='center', va='center',
+                  color=COLORS['dark'], transform=title_ax.transAxes)
+    title_ax.text(0.5, 0.3, f'🔋 {inverter_id} • {module_name}', 
+                  fontsize=14, fontweight='bold', ha='center', va='center',
+                  color=COLORS['primary'], transform=title_ax.transAxes)
     
     # Get raw data
     vpv = result['raw_data']['vpv']
     ipv = result['raw_data']['ipv']
     ppv = result['raw_data']['ppv']
     
-    # Enhanced Plot 1: I-V Characteristic with professional styling
-    ax1 = fig.add_subplot(gs[0, 0])
+    # Enhanced Plot 1: I-V Characteristic with ultra-professional styling
+    ax1 = fig.add_subplot(gs[1, 0])
     
-    # Create density-based coloring for scatter points
-    scatter = ax1.scatter(vpv, ipv, alpha=0.7, s=35, c=vpv, cmap='viridis', 
-                         edgecolors='white', linewidth=0.5, label='📍 Real Data Points')
+    # Create glass background effect
+    create_glass_effect_background(ax1, alpha=0.05)
     
-    # Enhanced reference lines
-    ax1.axhline(y=result['isc'], color=COLORS['danger'], linestyle='--', 
-               linewidth=2.5, alpha=0.8, label=f"ISC = {result['isc']:.2f} A")
-    ax1.axvline(x=result['voc'], color=COLORS['secondary'], linestyle='--', 
-               linewidth=2.5, alpha=0.8, label=f"VOC = {result['voc']:.1f} V")
+    # Create advanced density-based coloring for scatter points with custom colormap
+    custom_cmap = create_custom_colormap()
+    scatter = ax1.scatter(vpv, ipv, alpha=0.8, s=40, c=vpv, cmap=custom_cmap, 
+                         edgecolors='white', linewidth=0.8, label='📍 Real Data Points',
+                         zorder=5)
     
-    # Highlighted Maximum Power Point with enhanced styling
+    # Enhanced reference lines with gradient effects
+    isc_line = ax1.axhline(y=result['isc'], color=COLORS['danger'], linestyle='--', 
+                          linewidth=3, alpha=0.9, label=f"ISC = {result['isc']:.2f} A",
+                          zorder=3)
+    voc_line = ax1.axvline(x=result['voc'], color=COLORS['secondary'], linestyle='--', 
+                          linewidth=3, alpha=0.9, label=f"VOC = {result['voc']:.1f} V",
+                          zorder=3)
+    
+    # Add subtle glow effect to reference lines
+    ax1.axhline(y=result['isc'], color=COLORS['danger'], linestyle='-', 
+               linewidth=6, alpha=0.2, zorder=2)
+    ax1.axvline(x=result['voc'], color=COLORS['secondary'], linestyle='-', 
+               linewidth=6, alpha=0.2, zorder=2)
+    
+    # Highlighted Maximum Power Point with star burst effect
+    mpp_main = ax1.scatter([result['v_mp']], [result['i_mp']], color=COLORS['accent'], 
+                          s=300, zorder=10, marker='*', edgecolors=COLORS['dark'], linewidth=3,
+                          label=f"⭐ MPP ({result['v_mp']:.1f}V, {result['i_mp']:.1f}A)")
+    
+    # Add glow effect around MPP
     ax1.scatter([result['v_mp']], [result['i_mp']], color=COLORS['accent'], 
-               s=200, zorder=10, marker='*', edgecolors=COLORS['dark'], linewidth=2,
-               label=f"⭐ MPP ({result['v_mp']:.1f}V, {result['i_mp']:.1f}A)")
+               s=500, zorder=9, marker='*', alpha=0.3, edgecolors='none')
     
-    # Enhanced axes styling
-    ax1.set_xlabel('Voltage (V)', fontweight='bold', fontsize=12)
-    ax1.set_ylabel('Current (A)', fontweight='bold', fontsize=12)
-    ax1.set_title('🔌 I-V Characteristic Curve', fontweight='bold', fontsize=14, 
-                  color=COLORS['primary'], pad=20)
-    ax1.grid(True, alpha=0.4, linestyle='-', linewidth=0.8)
-    ax1.legend(loc='upper right', framealpha=0.95, shadow=True, fontsize=10)
+    # Enhanced axes styling with modern fonts and colors
+    ax1.set_xlabel('Voltage (V)', fontweight='bold', fontsize=14, color=COLORS['dark'])
+    ax1.set_ylabel('Current (A)', fontweight='bold', fontsize=14, color=COLORS['dark'])
+    ax1.set_title('🔌 I-V Characteristic Curve', fontweight='bold', fontsize=16, 
+                  color=COLORS['primary'], pad=25)
+    ax1.grid(True, alpha=0.4, linestyle='-', linewidth=1, color='#e0e0e0')
     
-    # Add colorbar for voltage gradient
-    cbar = plt.colorbar(scatter, ax=ax1, shrink=0.8, pad=0.02)
-    cbar.set_label('Voltage (V)', fontweight='bold', fontsize=10)
+    # Add subtle border glow effect
+    for spine in ax1.spines.values():
+        spine.set_linewidth(2)
+        spine.set_edgecolor(COLORS['primary'])
+        spine.set_alpha(0.7)
     
-    # Enhanced Plot 2: Power curve with gradient fill
-    ax2 = fig.add_subplot(gs[0, 1])
+    # Enhanced legend with glass effect
+    legend1 = ax1.legend(loc='upper right', framealpha=0.95, shadow=True, fontsize=11,
+                        facecolor=GLASS_COLORS['glass_blue'], edgecolor=COLORS['primary'])
+    legend1.get_frame().set_linewidth(2)
     
-    # Create smooth power curve for better visualization
+    # Add professional colorbar with enhanced styling
+    cbar = plt.colorbar(scatter, ax=ax1, shrink=0.8, pad=0.02, aspect=30)
+    cbar.set_label('Voltage (V)', fontweight='bold', fontsize=12, color=COLORS['dark'])
+    cbar.ax.tick_params(labelsize=10, colors=COLORS['dark'])
+    
+    # Enhanced Plot 2: Power curve with advanced gradient effects
+    ax2 = fig.add_subplot(gs[1, 1])
+    
+    # Create glass background effect
+    create_glass_effect_background(ax2, alpha=0.05)
+    
+    # Create smooth power curve for premium visualization
     voltage_sorted = np.sort(vpv)
     power_sorted = np.interp(voltage_sorted, vpv, ppv)
     
-    # Power curve with gradient fill
-    ax2.plot(voltage_sorted, power_sorted, color=COLORS['primary'], linewidth=3, 
-             alpha=0.8, label='📈 Power Curve')
-    ax2.fill_between(voltage_sorted, power_sorted, alpha=0.3, color=COLORS['primary'])
+    # Multi-layer power curve with depth effect
+    # Base shadow layer
+    ax2.plot(voltage_sorted, power_sorted, color='black', linewidth=6, 
+             alpha=0.2, zorder=1)
     
-    # Scatter plot of actual data points
-    ax2.scatter(vpv, ppv, alpha=0.6, s=25, c=COLORS['info'], 
-               edgecolors='white', linewidth=0.5, label='📊 Measured Data')
+    # Main power curve with enhanced gradient fill
+    power_line = ax2.plot(voltage_sorted, power_sorted, color=COLORS['primary'], linewidth=4, 
+                         alpha=0.9, label='📈 Power Curve', zorder=4)
     
-    # Enhanced Maximum Power Point
+    # Create sophisticated gradient fill with multiple layers
+    ax2.fill_between(voltage_sorted, power_sorted, alpha=0.4, color=COLORS['primary'], zorder=2)
+    ax2.fill_between(voltage_sorted, power_sorted, alpha=0.2, color=MODERN_PALETTE['neon_blue'], zorder=1)
+    
+    # Enhanced scatter plot of actual data points with size variation
+    power_scatter = ax2.scatter(vpv, ppv, alpha=0.7, s=30, c=ppv, cmap=custom_cmap, 
+                               edgecolors='white', linewidth=0.8, label='📊 Measured Data',
+                               zorder=5)
+    
+    # Ultra-enhanced Maximum Power Point with multi-layer effect
+    # Outer glow
     ax2.scatter([result['v_mp']], [result['p_max']], color=COLORS['accent'], 
-               s=250, zorder=10, marker='D', edgecolors=COLORS['dark'], linewidth=2,
-               label=f"💎 Pmax = {result['p_max']:.0f} W")
+               s=600, zorder=8, marker='D', alpha=0.2, edgecolors='none')
+    # Middle layer
+    ax2.scatter([result['v_mp']], [result['p_max']], color=COLORS['accent'], 
+               s=400, zorder=9, marker='D', alpha=0.4, edgecolors='white', linewidth=2)
+    # Main MPP marker
+    mpp_power = ax2.scatter([result['v_mp']], [result['p_max']], color=COLORS['accent'], 
+                           s=300, zorder=10, marker='D', edgecolors=COLORS['dark'], linewidth=3,
+                           label=f"💎 Pmax = {result['p_max']:.0f} W")
     
-    ax2.set_xlabel('Voltage (V)', fontweight='bold', fontsize=12)
-    ax2.set_ylabel('Power (W)', fontweight='bold', fontsize=12)
-    ax2.set_title('⚡ Power-Voltage Characteristic', fontweight='bold', fontsize=14, 
-                  color=COLORS['primary'], pad=20)
-    ax2.grid(True, alpha=0.4, linestyle='-', linewidth=0.8)
-    ax2.legend(loc='upper right', framealpha=0.95, shadow=True, fontsize=10)
+    # Add modern annotation for MPP
+    add_modern_annotations(ax2, result['v_mp'], result['p_max'], 
+                          f"Peak Power\n{result['p_max']:.0f} W", style='modern')
     
-    # Enhanced Plot 3: Module specifications with stylized info box
-    ax3 = fig.add_subplot(gs[0, 2])
+    ax2.set_xlabel('Voltage (V)', fontweight='bold', fontsize=14, color=COLORS['dark'])
+    ax2.set_ylabel('Power (W)', fontweight='bold', fontsize=14, color=COLORS['dark'])
+    ax2.set_title('⚡ Power-Voltage Characteristic', fontweight='bold', fontsize=16, 
+                  color=COLORS['primary'], pad=25)
+    ax2.grid(True, alpha=0.4, linestyle='-', linewidth=1, color='#e0e0e0')
+    
+    # Enhanced border styling
+    for spine in ax2.spines.values():
+        spine.set_linewidth(2)
+        spine.set_edgecolor(COLORS['primary'])
+        spine.set_alpha(0.7)
+    
+    # Enhanced legend
+    legend2 = ax2.legend(loc='upper right', framealpha=0.95, shadow=True, fontsize=11,
+                        facecolor=GLASS_COLORS['glass_green'], edgecolor=COLORS['secondary'])
+    legend2.get_frame().set_linewidth(2)
+    
+    # Enhanced Plot 3: Module specifications with ultra-modern info display
+    ax3 = fig.add_subplot(gs[1, 2])
     ax3.axis('off')
     
-    # Create a fancy info box for module specifications
+    # Create sophisticated module info card
     module_specs = result['module_specs']
     
-    # Create styled text box
-    info_box = FancyBboxPatch((0.05, 0.05), 0.9, 0.9, 
+    # Create layered background effect
+    main_box = FancyBboxPatch((0.02, 0.02), 0.96, 0.96, 
                               boxstyle="round,pad=0.05", 
-                              facecolor=COLORS['light'], 
+                              facecolor=GLASS_COLORS['glass_blue'], 
                               edgecolor=COLORS['primary'],
-                              linewidth=2, alpha=0.8)
-    ax3.add_patch(info_box)
+                              linewidth=3, alpha=0.8, zorder=1)
+    ax3.add_patch(main_box)
     
+    # Add inner accent border
+    accent_box = FancyBboxPatch((0.05, 0.05), 0.90, 0.90, 
+                               boxstyle="round,pad=0.03", 
+                               facecolor='none', 
+                               edgecolor=MODERN_PALETTE['neon_blue'],
+                               linewidth=1.5, alpha=0.6, zorder=2)
+    ax3.add_patch(accent_box)
+    
+    # Enhanced specifications text with modern formatting
     spec_text = f"""🔋 MODULE SPECIFICATIONS
 
 📋 Model: {module_specs.get('name', 'Unknown')}
@@ -597,11 +721,12 @@ def create_enhanced_analysis_plot(result: Dict[str, Any]):
 📐 Modules/String: {result['modules_per_string']}
 🔗 Parallel Strings: {result['strings_in_parallel']}
 🔢 Total Modules: {result['modules_per_string'] * result['strings_in_parallel']}
-📊 Data Points: {result['data_points']}"""
+📊 Data Points: {result['data_points']:,}"""
     
-    ax3.text(0.1, 0.95, spec_text, transform=ax3.transAxes, fontsize=9, 
+    # Add text with enhanced styling
+    ax3.text(0.1, 0.95, spec_text, transform=ax3.transAxes, fontsize=10, 
             verticalalignment='top', fontfamily='monospace', 
-            color=COLORS['dark'], fontweight='bold')
+            color=COLORS['dark'], fontweight='bold', zorder=3)
     
     # Enhanced Plot 4: Performance analysis with styled metrics
     ax4 = fig.add_subplot(gs[1, :])
@@ -887,11 +1012,14 @@ def create_fleet_summary_plot(results: List[Dict[str, Any]], analyzer: EnhancedI
     metrics_data = [powers, [ff*1000 for ff in fill_factors], temperatures, estimated_modules]
     metrics_labels = ['Power (W)', 'Fill Factor (×1000)', 'Temperature (°C)', 'Module Count']
     
-    box_plot = ax6.boxplot(metrics_data, labels=metrics_labels, patch_artist=True, 
+    box_plot = ax6.boxplot(metrics_data, patch_artist=True, 
                           boxprops=dict(facecolor=COLORS['primary'], alpha=0.7),
                           medianprops=dict(color=COLORS['dark'], linewidth=2),
                           whiskerprops=dict(color=COLORS['dark'], linewidth=1.5),
                           capprops=dict(color=COLORS['dark'], linewidth=1.5))
+    
+    # Set the labels manually
+    ax6.set_xticklabels(metrics_labels, rotation=15, fontsize=10)
     
     ax6.set_title('📊 Fleet Metrics Distribution', fontweight='bold', fontsize=14, 
                   color=COLORS['primary'], pad=20)
@@ -937,70 +1065,6 @@ def create_fleet_summary_plot(results: List[Dict[str, Any]], analyzer: EnhancedI
     plt.savefig(filename, dpi=300, bbox_inches='tight', facecolor='white', 
                edgecolor='none', pad_inches=0.3)
     print(f"\n🎨 Enhanced stylish fleet summary plot saved as: {filename}")
-    plt.close()
-    
-    # Plot 3: Module specifications and system configuration
-    ax3.axis('off')
-    ax3.set_title('PV Module Specifications & System Configuration', fontweight='bold')
-    
-    module_specs = analyzer.module_specs
-    spec_text = f"""
-PV Module Specifications:
-  Name: {module_specs.get('name', 'Unknown')}
-  Manufacturer: {module_specs.get('manufacturer', 'Unknown')}
-  Rated Power: {module_specs.get('rated_power_stc', 0):.0f} W
-  VOC (STC): {module_specs.get('rated_voltage_stc', 0):.2f} V
-  ISC (STC): {module_specs.get('rated_current_stc', 0):.2f} A
-  VMP (STC): {module_specs.get('voltage_at_max_power', 0):.2f} V
-  IMP (STC): {module_specs.get('current_at_max_power', 0):.2f} A
-  Fill Factor: {module_specs.get('fill_factor_nominal', 0):.3f}
-  Efficiency: {module_specs.get('efficiency_stc', 0):.2f}%
-
-System Configuration (Estimated):
-  Modules per String: {result['modules_per_string']}
-  Parallel Strings: {result['strings_in_parallel']}
-  Total Modules: {result['modules_per_string'] * result['strings_in_parallel']}
-  Data Points: {result['data_points']}
-    """
-    ax3.text(0.05, 0.95, spec_text, transform=ax3.transAxes, fontsize=10, 
-            verticalalignment='top', fontfamily='monospace')
-    
-    # Plot 4: Performance analysis and temperature effects
-    ax4.axis('off')
-    ax4.set_title('Performance Analysis & Environmental Effects', fontweight='bold')
-    
-    temp_effects = result['temperature_effects']
-    expected_system_power = module_specs.get('rated_power_stc', 570) * result['modules_per_string'] * result['strings_in_parallel']
-    performance_ratio = (result['p_max'] / expected_system_power * 100) if expected_system_power > 0 else 0
-    
-    analysis_text = f"""
-Measured Performance:
-  Peak Power: {result['p_max']:.0f} W
-  Fill Factor: {result['fill_factor']:.3f}
-  Performance Ratio: {performance_ratio:.1f}%
-
-Temperature Analysis:
-  Average Temperature: {result['avg_temperature']:.1f}°C
-  Delta from STC: {temp_effects['temperature_delta']:.1f}°C
-  VOC Temperature Effect: {temp_effects['voc_effect_percent']:.2f}%
-  ISC Temperature Effect: {temp_effects['isc_effect_percent']:.2f}%
-  Power Temperature Effect: {temp_effects['power_effect_percent']:.2f}%
-
-Expected vs Measured (with temp correction):
-  Expected VOC: {module_specs.get('rated_voltage_stc', 0) * result['modules_per_string'] * temp_effects['expected_voc_factor']:.1f} V
-  Measured VOC: {result['voc']:.1f} V
-  Expected ISC: {module_specs.get('rated_current_stc', 0) * result['strings_in_parallel'] * temp_effects['expected_isc_factor']:.2f} A
-  Measured ISC: {result['isc']:.2f} A
-    """
-    ax4.text(0.05, 0.95, analysis_text, transform=ax4.transAxes, fontsize=10,
-            verticalalignment='top', fontfamily='monospace')
-    
-    plt.tight_layout()
-    
-    # Save plot
-    filename = f"enhanced_analysis_{result['inverter_id'].lower()}.png"
-    plt.savefig(filename, dpi=300, bbox_inches='tight')
-    print(f"  📊 Enhanced plot saved as: {filename}")
     plt.close()
 
 
@@ -1174,6 +1238,65 @@ def create_analysis_plot(inverter_id: str, voltage: np.ndarray, current: np.ndar
     plt.savefig(filename, dpi=300, bbox_inches='tight')
     print(f"  📊 Plot saved as: {filename}")
     plt.close()
+
+
+def add_3d_shadow_effect(ax, element, shadow_color='black', offset=(2, -2), alpha=0.3):
+    """Add 3D shadow effect to plot elements"""
+    if hasattr(element, 'get_paths'):
+        for path in element.get_paths():
+            shadow_path = path.transformed(ax.transData)
+            shadow = patches.PathPatch(shadow_path, facecolor=shadow_color, 
+                                     alpha=alpha, zorder=element.get_zorder()-1)
+            ax.add_patch(shadow)
+
+def create_glass_effect_background(ax, color='#f8f9fa', alpha=0.1):
+    """Create glass-like background effect"""
+    # Create gradient background
+    gradient = np.linspace(0, 1, 256).reshape(256, -1)
+    gradient = np.vstack((gradient, gradient, gradient)).T
+    ax.imshow(gradient, aspect='auto', cmap='Blues', alpha=alpha, 
+              extent=[ax.get_xlim()[0], ax.get_xlim()[1], ax.get_ylim()[0], ax.get_ylim()[1]])
+
+def add_modern_annotations(ax, x, y, text, style='modern'):
+    """Add modern-style annotations with enhanced styling"""
+    if style == 'modern':
+        bbox_props = dict(boxstyle="round,pad=0.3", facecolor=GLASS_COLORS['glass_blue'], 
+                         edgecolor=COLORS['primary'], linewidth=2, alpha=0.8)
+    elif style == 'neon':
+        bbox_props = dict(boxstyle="round,pad=0.3", facecolor='black', 
+                         edgecolor=MODERN_PALETTE['neon_blue'], linewidth=3, alpha=0.9)
+    else:
+        bbox_props = dict(boxstyle="round,pad=0.3", facecolor=COLORS['light'], 
+                         edgecolor=COLORS['dark'], linewidth=1.5, alpha=0.7)
+    
+    annotation = ax.annotate(text, xy=(x, y), xytext=(20, 20), 
+                           textcoords='offset points', ha='left',
+                           bbox=bbox_props, fontsize=10, fontweight='bold',
+                           arrowprops=dict(arrowstyle='->', connectionstyle='arc3,rad=0.2',
+                                         color=COLORS['primary'], lw=2))
+    return annotation
+
+def create_enhanced_legend(ax, labels, colors, style='glass'):
+    """Create enhanced legend with modern styling"""
+    if style == 'glass':
+        legend = ax.legend(labels, fancybox=True, shadow=True, frameon=True,
+                          facecolor=GLASS_COLORS['glass_blue'], 
+                          edgecolor=COLORS['primary'], framealpha=0.9)
+        legend.get_frame().set_linewidth(2)
+    elif style == 'neon':
+        legend = ax.legend(labels, fancybox=True, shadow=True, frameon=True,
+                          facecolor='black', edgecolor=MODERN_PALETTE['neon_blue'], 
+                          framealpha=0.95)
+        legend.get_frame().set_linewidth(3)
+        for text in legend.get_texts():
+            text.set_color(MODERN_PALETTE['neon_blue'])
+    else:
+        # Default style
+        legend = ax.legend(labels, fancybox=True, shadow=True, frameon=True,
+                          facecolor=COLORS['light'], edgecolor=COLORS['dark'], 
+                          framealpha=0.9)
+        legend.get_frame().set_linewidth(1.5)
+    return legend
 
 
 if __name__ == "__main__":
