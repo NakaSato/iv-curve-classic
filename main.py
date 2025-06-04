@@ -7,7 +7,12 @@ parameter extraction, and diagnostic analysis.
 
 import numpy as np
 import matplotlib.pyplot as plt
+import warnings
 from pathlib import Path
+
+# Suppress specific numpy warnings that occur during data processing
+warnings.filterwarnings('ignore', category=RuntimeWarning, message='Mean of empty slice')
+warnings.filterwarnings('ignore', category=RuntimeWarning, message='invalid value encountered in scalar divide')
 
 from iv_curve_classic.data_loader import InverterDataLoader, get_real_data_samples
 from iv_curve_classic.iv_analyzer import IVAnalyzer
