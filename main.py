@@ -943,7 +943,7 @@ def create_fleet_summary_plot(results: List[Dict[str, Any]], analyzer: EnhancedI
     ax3.axis('off')
     ax3.set_title('PV Module Specifications & System Configuration', fontweight='bold')
     
-    module_specs = result['module_specs']
+    module_specs = analyzer.module_specs
     spec_text = f"""
 PV Module Specifications:
   Name: {module_specs.get('name', 'Unknown')}
