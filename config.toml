@@ -1,5 +1,72 @@
 # I-V Curve Analysis Configuration
 # This file contains configuration settings for the I-V curve analysis system
+# Including PV module specifications and analysis parameters
+
+# ================================================================================================
+# PV MODULE SPECIFICATIONS
+# ================================================================================================
+
+[pv_module]
+# Standard Test Conditions (STC): 1000 W/m², 25°C, AM 1.5
+name = "ZXM7-UHLD144 570W"
+manufacturer = "ZNSHINESOLAR"
+model = "ZXM7-UHLD144-570"
+technology = "N-Type TOPCon Double Glass Monocrystalline"
+series = "ZXM7-UHLD144 Series"
+type = "16BB HALF-CELL N-Type TOPCon Double Glass Monocrystalline PV Module"
+
+# Electrical Specifications at STC (570W variant)
+rated_power_stc = 570.0          # Watts (Pmax)
+rated_voltage_stc = 51.00        # Volts (VOC at STC)
+rated_current_stc = 14.18        # Amps (ISC at STC)
+voltage_at_max_power = 42.40     # Volts (VMP at STC)
+current_at_max_power = 13.45     # Amps (IMP at STC)
+fill_factor_nominal = 0.787      # Calculated FF = (Vmp×Imp)/(Voc×Isc) = (42.40×13.45)/(51.00×14.18)
+efficiency_stc = 22.06           # Module efficiency at STC (%)
+power_tolerance = 3.0            # ±3% power tolerance
+
+# Cell Configuration (N-Type TOPCon Technology)
+cells_in_series = 144            # Number of cells (6×24 configuration)
+cells_in_parallel = 1            # Number of parallel cell strings
+bypass_diodes = 3                # Number of bypass diodes (IP68 junction box)
+cell_technology = "N-type Monocrystalline"
+cell_orientation = "6x24"        # 144 half-cells
+half_cell_design = true          # 16BB half-cell technology
+
+# Temperature Coefficients (per °C) - From manufacturer specifications
+temp_coeff_voc = -0.25e-2        # %/°C (-0.25%/°C)
+temp_coeff_isc = 0.048e-2        # %/°C (+0.048%/°C)
+temp_coeff_power = -0.30e-2      # %/°C (-0.30±0.03%/°C)
+temp_coeff_fill_factor = -0.15e-2 # %/°C (estimated from power and voltage coefficients)
+
+# Physical Parameters
+module_area = 2.0               # m² (module area)
+cell_area = 244.0               # cm² (individual cell area)
+module_weight = 22.0            # kg
+dimensions_length = 2000        # mm
+dimensions_width = 1000         # mm
+dimensions_thickness = 40       # mm
+
+# Electrical Characteristics
+series_resistance_typical = 0.5  # Ohms (typical Rs value)
+shunt_resistance_typical = 5000  # Ohms (typical Rsh value)
+ideality_factor_typical = 1.2   # Typical diode ideality factor
+reverse_saturation_current = 1e-12 # Amps (typical I0)
+
+# Environmental Specifications
+operating_temp_min = -40        # °C
+operating_temp_max = 85         # °C
+max_system_voltage = 1500       # V DC
+max_series_fuse = 25            # A
+
+# Degradation Characteristics
+annual_degradation_rate = 0.6   # %/year (typical 0.5-0.8%/year)
+power_tolerance_positive = 3.0  # % (+3% power tolerance)
+power_tolerance_negative = 0.0  # % (0% negative tolerance)
+
+# ================================================================================================
+# ANALYSIS CONFIGURATION
+# ================================================================================================
 
 [data_processing]
 # Maximum number of inverters to process
@@ -17,7 +84,7 @@ min_current_threshold = 0.1
 min_power_threshold = 100.0
 
 [analysis_parameters]
-# I-V parameter validation ranges
+# I-V parameter validation ranges (based on PV module specifications)
 voc_min = 10.0
 voc_max = 1000.0
 isc_min = 0.5
@@ -29,6 +96,42 @@ series_resistance_max = 10.0
 shunt_resistance_min = 10.0
 shunt_resistance_max = 50000.0
 
+# Analysis algorithms configuration
+curve_fitting_method = "least_squares"  # Options: least_squares, trust_region, lm
+parameter_extraction_method = "slope"   # Options: slope, curve_fit, hybrid
+temperature_correction = true           # Apply temperature corrections
+irradiance_correction = true           # Apply irradiance corrections
+
+# Mathematical model parameters
+single_diode_model = true              # Use single-diode model
+two_diode_model = false               # Use two-diode model (advanced)
+distributed_model = false            # Use distributed parameter model
+
+# ================================================================================================
+# ENVIRONMENTAL CONDITIONS
+# ================================================================================================
+
+[environmental]
+# Reference conditions
+reference_irradiance = 1000.0    # W/m² (STC irradiance)
+reference_temperature = 25.0     # °C (STC cell temperature)
+reference_air_mass = 1.5         # AM 1.5 spectrum
+
+# Operating condition ranges
+min_irradiance = 100.0           # W/m² (minimum for analysis)
+max_irradiance = 1200.0          # W/m² (maximum expected)
+min_temperature = -10.0          # °C (minimum operating)
+max_temperature = 70.0           # °C (maximum operating)
+
+# Environmental correction factors
+wind_speed_effect = true         # Consider wind cooling effect
+spectral_correction = false     # Apply spectral mismatch correction
+soiling_factor = 0.95           # Default soiling factor (5% loss)
+
+# ================================================================================================
+# PERFORMANCE THRESHOLDS AND CLASSIFICATION
+# ================================================================================================
+
 [plotting]
 # Plot generation settings
 dpi = 300
@@ -38,12 +141,57 @@ save_plots = true
 show_plots = false
 
 [diagnostics]
-# Health assessment thresholds
-fill_factor_excellent = 0.82
-fill_factor_good = 0.75
-fill_factor_fair = 0.65
-series_resistance_warning = 2.0
-shunt_resistance_warning = 100.0
+# Health assessment thresholds (based on PV module specifications)
+fill_factor_excellent = 0.82     # FF > 0.82 (excellent performance)
+fill_factor_good = 0.75          # 0.75 < FF ≤ 0.82 (good performance)
+fill_factor_fair = 0.65          # 0.65 < FF ≤ 0.75 (fair performance)
+fill_factor_poor = 0.60          # FF ≤ 0.65 (poor performance)
+
+# Resistance thresholds
+series_resistance_excellent = 0.3    # Rs < 0.3 Ω (excellent)
+series_resistance_good = 0.7        # 0.3 ≤ Rs < 0.7 Ω (good)
+series_resistance_warning = 2.0     # Rs ≥ 2.0 Ω (warning level)
+series_resistance_critical = 5.0    # Rs ≥ 5.0 Ω (critical level)
+
+shunt_resistance_excellent = 10000  # Rsh > 10 kΩ (excellent)
+shunt_resistance_good = 5000       # 5 kΩ ≤ Rsh ≤ 10 kΩ (good)
+shunt_resistance_warning = 1000    # 1 kΩ ≤ Rsh < 5 kΩ (warning)
+shunt_resistance_critical = 100    # Rsh < 100 Ω (critical)
+
+# Performance degradation thresholds
+power_degradation_warning = 5.0    # % power loss (warning level)
+power_degradation_critical = 15.0  # % power loss (critical level)
+voltage_degradation_warning = 3.0  # % VOC loss (warning level)
+current_degradation_warning = 3.0  # % ISC loss (warning level)
+
+# Anomaly detection parameters
+statistical_outlier_threshold = 3.0  # Standard deviations for outlier detection
+confidence_interval = 0.95          # Confidence level for analysis
+
+# ================================================================================================
+# ECONOMIC ANALYSIS PARAMETERS
+# ================================================================================================
+
+[economic]
+# Financial parameters
+electricity_rate = 0.12          # $/kWh (electricity price)
+discount_rate = 0.06             # Annual discount rate for NPV calculations
+maintenance_cost_base = 1000     # $ Base maintenance cost per inverter
+energy_loss_multiplier = 2000    # Hours/year typical operation
+
+# Performance ratios and factors
+capacity_factor = 0.20           # Typical capacity factor for solar installations
+system_availability = 0.95      # System availability factor
+inverter_efficiency = 0.96      # Inverter efficiency
+
+# Maintenance planning
+maintenance_interval_months = 12  # Standard maintenance interval
+critical_response_days = 7       # Response time for critical issues
+routine_response_days = 30       # Response time for routine maintenance
+
+# ROI calculation parameters
+project_lifetime_years = 25      # Expected project lifetime
+salvage_value_percent = 10       # % of initial value at end of life
 
 [synthetic_data]
 # Synthetic data generation scenarios
