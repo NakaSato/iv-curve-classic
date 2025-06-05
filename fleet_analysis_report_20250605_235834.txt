@@ -1,0 +1,43 @@
+====================================================================================================
+🚀 PRODUCTION DUAL-STRING MPPT FLEET ANALYSIS REPORT
+====================================================================================================
+📅 Generated: 2025-06-05 23:58:34
+🏭 Fleet Size: 3 systems
+⚖️ Average Fleet Health: 95.5%
+⚡ Average Fleet Efficiency: 95.5%
+🚨 Active Alerts: 0
+
+📊 SYSTEM STATUS DISTRIBUTION
+--------------------------------------------------
+  NORMAL: 3 systems (100.0%)
+  WARNING: 0 systems (0.0%)
+  CRITICAL: 0 systems (0.0%)
+
+🔍 INDIVIDUAL SYSTEM STATUS
+--------------------------------------------------
+System INVERTER_01:
+  • Health Score: 94.1%
+  • Failure Risk: 0.6%
+  • Power Output: 1847.0W
+  • Efficiency: 94.1%
+  • Status: NORMAL
+  • Last Analysis: 2025-06-05 23:58:33.547678
+
+System INVERTER_02:
+  • Health Score: 101.9%
+  • Failure Risk: 0.6%
+  • Power Output: 804.2W
+  • Efficiency: 101.9%
+  • Status: NORMAL
+  • Last Analysis: 2025-06-05 23:58:33.812344
+
+System INVERTER_03:
+  • Health Score: 90.6%
+  • Failure Risk: 0.5%
+  • Power Output: 1802.9W
+  • Efficiency: 90.6%
+  • Status: NORMAL
+  • Last Analysis: 2025-06-05 23:58:34.060157
+
+
+====================================================================================================
