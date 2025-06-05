@@ -718,7 +718,7 @@ class NextGenDualStringAnalyzer:
         return {
             'maintenance_cost': maintenance_cost,
             'potential_loss_avoided': potential_loss,
-            'roi': (potential_loss_avoided - maintenance_cost) / maintenance_cost * 100
+            'roi': (potential_loss - maintenance_cost) / maintenance_cost * 100
         }
     
     def _calculate_optimal_power(self) -> float:
@@ -774,31 +774,42 @@ class NextGenDualStringAnalyzer:
     
     def _create_system_model(self) -> Dict[str, Any]:
         """Create digital twin system model"""
-        # Simple polynomial model for demonstration
-        X = np.column_stack([
-            self.data['Vstr1(V)'],
-            self.data['Vstr2(V)'],
-            self.data['Istr1(A)'],
-            self.data['Istr2(A)']
-        ])
-        y = self.data['P_total(W)']
+        if self.data is None or len(self.data) == 0:
+            return {'model_type': 'none', 'accuracy': 0.0}
+            
+        # Simple linear model for demonstration
+        # Use total power vs time for trend analysis
+        x = np.arange(len(self.data))
+        y = np.array(self.data['P_total(W)'].values, dtype=float)
         
-        # Fit model
-        coeffs = np.polyfit(X.flatten(), y, 2)
-        
-        # Calculate accuracy
-        y_pred = np.polyval(coeffs, X.flatten())
-        r_squared = 1 - np.sum((y - y_pred) ** 2) / np.sum((y - y.mean()) ** 2)
-        
-        return {
-            'model_type': 'polynomial',
-            'coefficients': coeffs.tolist(),
-            'accuracy': float(r_squared)
-        }
+        try:
+            # Fit linear model
+            coeffs = np.polyfit(x, y, 1)
+            
+            # Calculate accuracy
+            y_pred = np.polyval(coeffs, x)
+            r_squared = 1 - np.sum((y - y_pred) ** 2) / np.sum((y - np.mean(y)) ** 2)
+            
+            return {
+                'model_type': 'linear_trend',
+                'coefficients': coeffs.tolist(),
+                'accuracy': float(max(0, r_squared)),  # Ensure non-negative
+                'trend_slope': float(coeffs[0]),
+                'intercept': float(coeffs[1])
+            }
+        except Exception as e:
+            return {
+                'model_type': 'failed',
+                'accuracy': 0.0,
+                'error': str(e)
+            }
     
     def _simulate_scenario(self, scenario: str, model: Dict[str, Any]) -> Dict[str, Any]:
         """Simulate different scenarios using digital twin"""
-        base_power = self.data['P_total(W)'].mean()
+        if self.data is None or len(self.data) == 0:
+            return {'scenario': scenario, 'simulated_power': 0.0, 'improvement_factor': 1.0, 'economic_impact': 0.0}
+            
+        base_power = float(self.data['P_total(W)'].mean())
         
         scenarios = {
             'optimal_conditions': {'power_factor': 1.2, 'efficiency_gain': 0.05},

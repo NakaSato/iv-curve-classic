@@ -1,0 +1,31 @@
+2025-06-05 23:30:09,177 - production_dual_string_system - INFO - 📊 Database initialized successfully
+2025-06-05 23:30:09,177 - production_dual_string_system - INFO - 📡 Monitoring system initialized
+2025-06-05 23:30:09,177 - production_dual_string_system - INFO - 🚀 Production Dual-String System Initialized
+2025-06-05 23:30:09,177 - production_dual_string_system - INFO - 📊 Database: production_dual_string_system.db
+2025-06-05 23:30:09,177 - production_dual_string_system - INFO - ⚙️ Config: production_config.ini
+2025-06-05 23:30:09,178 - production_dual_string_system - INFO - 🔍 Starting comprehensive analysis for INVERTER_01
+2025-06-05 23:30:10,127 - production_dual_string_system - INFO - ✅ Enhanced I-V analysis completed for INVERTER_01
+2025-06-05 23:30:10,127 - production_dual_string_system - ERROR - ❌ MPPT analysis failed for INVERTER_01: 'DualStringMPPTAnalyzer' object has no attribute 'run_comprehensive_dual_string_analysis'
+2025-06-05 23:30:10,233 - production_dual_string_system - INFO - ✅ AI-powered analysis completed for INVERTER_01
+2025-06-05 23:30:10,235 - production_dual_string_system - INFO - 📊 Updated status for INVERTER_01: Health=43.7%, Risk=96.7%
+2025-06-05 23:30:10,236 - production_dual_string_system - WARNING - 🚨 CRITICAL Alert for INVERTER_01: System health critically low: 43.7%
+2025-06-05 23:30:10,236 - production_dual_string_system - CRITICAL - 🚨 ESCALATING CRITICAL ALERT for INVERTER_01
+2025-06-05 23:30:10,236 - production_dual_string_system - WARNING - 🚨 CRITICAL Alert for INVERTER_01: High failure risk detected: 96.7%
+2025-06-05 23:30:10,236 - production_dual_string_system - CRITICAL - 🚨 ESCALATING CRITICAL ALERT for INVERTER_01
+2025-06-05 23:30:10,236 - production_dual_string_system - WARNING - ⚠️ Generated 2 alerts for INVERTER_01
+2025-06-05 23:30:10,236 - production_dual_string_system - INFO - ✅ Analysis completed for INVERTER_01 in 1.1s
+2025-06-05 23:30:10,237 - production_dual_string_system - INFO - 🔍 Starting enhanced_iv analysis for INVERTER_06
+2025-06-05 23:30:10,252 - production_dual_string_system - ERROR - ❌ Analysis failed for INVERTER_06: 'Time'
+2025-06-05 23:30:10,252 - production_dual_string_system - INFO - 🔍 Starting enhanced_iv analysis for INVERTER_09
+2025-06-05 23:30:10,268 - production_dual_string_system - ERROR - ❌ Analysis failed for INVERTER_09: 'Time'
+2025-06-05 23:30:10,268 - production_dual_string_system - INFO - 🔍 Starting enhanced_iv analysis for INVERTER_01
+2025-06-05 23:30:11,055 - production_dual_string_system - INFO - 📊 Updated status for INVERTER_01: Health=0.0%, Risk=0.0%
+2025-06-05 23:30:11,055 - production_dual_string_system - INFO - ✅ Analysis completed for INVERTER_01 in 0.8s
+2025-06-05 23:30:11,055 - production_dual_string_system - INFO - 🔍 Starting enhanced_iv analysis for INVERTER_04
+2025-06-05 23:30:11,070 - production_dual_string_system - ERROR - ❌ Analysis failed for INVERTER_04: 'Time'
+2025-06-05 23:30:11,071 - production_dual_string_system - INFO - 🔍 Starting enhanced_iv analysis for INVERTER_03
+2025-06-05 23:30:11,087 - production_dual_string_system - ERROR - ❌ Analysis failed for INVERTER_03: 'Time'
+2025-06-05 23:30:11,184 - production_dual_string_system - INFO - 📊 Fleet dashboard created: fleet_dashboard_20250605_233011.html
+2025-06-05 23:30:11,186 - production_dual_string_system - INFO - 🔍 Starting ai_powered analysis for INVERTER_01_AI_DEMO
+2025-06-05 23:30:11,456 - production_dual_string_system - INFO - 📊 Updated status for INVERTER_01_AI_DEMO: Health=75.0%, Risk=25.0%
+2025-06-05 23:30:11,456 - production_dual_string_system - INFO - ✅ Analysis completed for INVERTER_01_AI_DEMO in 0.3s
