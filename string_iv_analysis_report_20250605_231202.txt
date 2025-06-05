@@ -1,0 +1,132 @@
+================================================================================
+🔍 COMPREHENSIVE DUAL-STRING I-V CURVE ANALYSIS REPORT
+================================================================================
+📅 Generated: 2025-06-05 23:12:02
+📁 Data File: INVERTER_01_2025-04-04_2025-04-05.csv
+📊 Data Points: 1277 valid measurements
+
+📈 STRING 1 COMPREHENSIVE ANALYSIS
+----------------------------------------
+🔌 I-V Curve Characteristics:
+   • Open Circuit Voltage (Voc): 680.60 V
+   • Short Circuit Current (Isc): 0.100 A
+   • Fill Factor: 124.2316
+   • Series Resistance: 6.5827 Ω
+   • Shunt Resistance: ∞ Ω
+
+⚡ Maximum Power Point (MPP):
+   • MPP Voltage: 704.60 V
+   • MPP Current: 12.000 A
+   • MPP Power: 8455.20 W
+
+📊 Performance Metrics:
+   • Average Power: 1994.97 W
+   • Maximum Power: 8455.20 W
+   • Power Standard Deviation: 2833.43 W
+   • Average Voltage: 382.38 V
+   • Voltage Range: 0.2 - 797.4 V
+   • Average Current: 2.786 A
+   • Current Range: 0.000 - 12.000 A
+   • Stability Index: -0.4203
+   • Performance Ratio: 0.2359
+
+🎯 Operating Points Analysis:
+   • Low Power Operation: 0.0%
+   • Medium Power Operation: 49.8%
+   • High Power Operation: 25.1%
+   • Peak Power Operation: 25.1%
+   • MPP Tracking Efficiency: 3.8%
+
+⚙️ Efficiency Analysis:
+   • Average Efficiency: 21.45%
+   • Efficiency Range: 0.00% - 90.91%
+   • Efficiency Stability: 0.6954
+   • Low Efficiency Periods: 1083 occurrences
+
+🔍 I-V Curve Quality Assessment:
+   • Overall Quality Score: 40.0/100
+   • Voltage Noise Level: 38.7578
+   • Current Noise Level: 0.7107
+   • Curve Completeness (V): 1.000
+   • Curve Completeness (I): 1.000
+
+
+📈 STRING 2 COMPREHENSIVE ANALYSIS
+----------------------------------------
+🔌 I-V Curve Characteristics:
+   • Open Circuit Voltage (Voc): 686.20 V
+   • Short Circuit Current (Isc): 0.000 A
+   • Fill Factor: 0.0000
+   • Series Resistance: 6.9965 Ω
+   • Shunt Resistance: ∞ Ω
+
+⚡ Maximum Power Point (MPP):
+   • MPP Voltage: 704.60 V
+   • MPP Current: 11.200 A
+   • MPP Power: 7891.52 W
+
+📊 Performance Metrics:
+   • Average Power: 2002.41 W
+   • Maximum Power: 7891.52 W
+   • Power Standard Deviation: 2759.61 W
+   • Average Voltage: 382.38 V
+   • Voltage Range: 0.2 - 797.4 V
+   • Average Current: 2.781 A
+   • Current Range: 0.000 - 11.200 A
+   • Stability Index: -0.3781
+   • Performance Ratio: 0.2537
+
+🎯 Operating Points Analysis:
+   • Low Power Operation: 0.0%
+   • Medium Power Operation: 0.0%
+   • High Power Operation: 74.9%
+   • Peak Power Operation: 25.1%
+   • MPP Tracking Efficiency: 4.2%
+
+⚙️ Efficiency Analysis:
+   • Average Efficiency: 23.07%
+   • Efficiency Range: 0.00% - 90.91%
+   • Efficiency Stability: 0.6821
+   • Low Efficiency Periods: 1081 occurrences
+
+🔍 I-V Curve Quality Assessment:
+   • Overall Quality Score: 40.0/100
+   • Voltage Noise Level: 38.7578
+   • Current Noise Level: 0.6709
+   • Curve Completeness (V): 1.000
+   • Curve Completeness (I): 1.000
+
+
+⚖️ COMPARATIVE STRING ANALYSIS
+----------------------------------------
+🔋 Power Analysis:
+   • String 1 Average Power: 1994.97 W
+   • String 2 Average Power: 2002.41 W
+   • Power Difference: 7.44 W (0.4%)
+   • Higher Performing String: String 2
+
+🔌 I-V Characteristics Comparison:
+   • Voc Difference: 5.60 V
+   • Isc Difference: 0.100 A
+   • Fill Factor Difference: 124.2316
+
+⚙️ Efficiency Comparison:
+   • String 1 Efficiency: 21.45%
+   • String 2 Efficiency: 23.07%
+   • Efficiency Difference: 1.62%
+
+🔍 Quality Comparison:
+   • String 1 Quality Score: 40.0/100
+   • String 2 Quality Score: 40.0/100
+   • Quality Difference: 0.0 points
+
+
+💡 RECOMMENDATIONS
+----------------------------------------
+1. 📉 **Low Fill Factor**: One or both strings show low fill factor. Check for series resistance issues or cell degradation.
+2. 🔍 **Data Quality Issues**: I-V curve quality concerns detected. Verify monitoring equipment and connections.
+3. ⚡ **Low Efficiency Alert**: String efficiency below optimal levels. Consider cleaning and maintenance.
+4. 🔧 **High Series Resistance**: Elevated series resistance detected. Inspect connections and wiring.
+5. 🎯 **MPP Tracking Issues**: Poor maximum power point tracking detected. Review MPPT controller settings.
+
+================================================================================

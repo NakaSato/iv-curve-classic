@@ -46,9 +46,9 @@ def demonstrate_dual_string_analysis():
     # Comparison Analysis
     comparison = performance['comparison']
     print(f"⚖️ String Comparison:")
-    print(f"   • Power Difference: {comparison['power_difference_percent']:.1f}%")
-    print(f"   • Voltage Difference: {comparison['voltage_difference']:.1f} V")
-    print(f"   • Current Difference: {comparison['current_difference']:.2f} A")
+    print(f"   • Power Difference: {comparison['power_diff_percent']:.1f}%")
+    print(f"   • Voltage Difference: {comparison['voltage_diff_avg']:.1f} V")
+    print(f"   • Current Difference: {comparison['current_diff_avg']:.2f} A")
     
     # Issues Detection
     issues = results['issues']
@@ -69,7 +69,7 @@ def demonstrate_dual_string_analysis():
     print("\n🎯 CRITICAL ASSESSMENT")
     print("-" * 50)
     
-    power_imbalance = comparison['power_difference_percent']
+    power_imbalance = comparison['power_diff_percent']
     if power_imbalance > 15:
         status = "🔴 CRITICAL"
         action = "Immediate inspection required"
