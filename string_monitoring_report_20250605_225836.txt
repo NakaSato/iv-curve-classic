@@ -1,0 +1,24 @@
+================================================================================
+🔍 DUAL-STRING MPPT MONITORING SYSTEM REPORT
+================================================================================
+📅 Generated: 2025-06-05 22:58:36
+🏥 System Status: ACTIVE
+💚 System Health: CRITICAL
+🚨 Active Critical Alerts: 1
+📊 Monitoring Sessions: 1
+📈 Total Alerts: 3
+
+🚨 RECENT ALERTS (24 Hours)
+----------------------------------------
+22:58:23 | WARNING | Power imbalance warning: 10.8% difference between strings
+22:58:23 | CRITICAL | Critical voltage mismatch: 36.3V difference between strings
+22:58:23 | WARNING | Multiple performance degradation events: 298 detected
+
+📈 LATEST PERFORMANCE METRICS
+----------------------------------------
+String 1 Power: 3871.7 W
+String 2 Power: 4312.1 W
+Power Imbalance: 10.8%
+MPPT Efficiency: 100.0%
+
+================================================================================

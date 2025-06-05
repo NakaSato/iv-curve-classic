@@ -1,0 +1,28 @@
+{
+    "monitoring_intervals": {
+        "real_time": 300,
+        "daily_summary": 86400,
+        "weekly_report": 604800
+    },
+    "alert_thresholds": {
+        "power_imbalance_critical": 15.0,
+        "power_imbalance_warning": 8.0,
+        "voltage_mismatch_critical": 10.0,
+        "voltage_mismatch_warning": 5.0,
+        "current_mismatch_critical": 3.0,
+        "current_mismatch_warning": 1.5,
+        "efficiency_drop_critical": 85.0,
+        "efficiency_drop_warning": 90.0
+    },
+    "data_retention": {
+        "raw_data_days": 30,
+        "summary_data_days": 365,
+        "alert_history_days": 90
+    },
+    "notification_settings": {
+        "email_alerts": false,
+        "sms_alerts": false,
+        "dashboard_alerts": true,
+        "log_file_path": "string_monitoring.log"
+    }
+}

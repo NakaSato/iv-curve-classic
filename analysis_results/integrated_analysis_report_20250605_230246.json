@@ -1,0 +1,155 @@
+{
+  "analysis_metadata": {
+    "timestamp": "2025-06-05T23:02:46.450875",
+    "workflow_version": "1.0.0",
+    "total_files_analyzed": 9
+  },
+  "individual_results": {
+    "INVERTER_02_2025-04-04_2025-04-05.csv": {
+      "file_path": "inverter/INVERTER_02_2025-04-04_2025-04-05.csv",
+      "timestamp": "2025-06-05T23:02:46.338958",
+      "status": "success",
+      "metrics": {
+        "string1_avg_power": 0,
+        "string2_avg_power": 0,
+        "power_imbalance": 0,
+        "mppt_efficiency": 0,
+        "issues_detected": 0
+      },
+      "alerts": [],
+      "recommendations": []
+    },
+    "INVERTER_03_2025-04-04_2025-04-05.csv": {
+      "file_path": "inverter/INVERTER_03_2025-04-04_2025-04-05.csv",
+      "timestamp": "2025-06-05T23:02:46.353797",
+      "status": "success",
+      "metrics": {
+        "string1_avg_power": 0,
+        "string2_avg_power": 0,
+        "power_imbalance": 0,
+        "mppt_efficiency": 0,
+        "issues_detected": 0
+      },
+      "alerts": [],
+      "recommendations": []
+    },
+    "INVERTER_04_2025-04-04_2025-04-05.csv": {
+      "file_path": "inverter/INVERTER_04_2025-04-04_2025-04-05.csv",
+      "timestamp": "2025-06-05T23:02:46.368838",
+      "status": "success",
+      "metrics": {
+        "string1_avg_power": 0,
+        "string2_avg_power": 0,
+        "power_imbalance": 0,
+        "mppt_efficiency": 0,
+        "issues_detected": 0
+      },
+      "alerts": [],
+      "recommendations": []
+    },
+    "INVERTER_05_2025-04-04_2025-04-05.csv": {
+      "file_path": "inverter/INVERTER_05_2025-04-04_2025-04-05.csv",
+      "timestamp": "2025-06-05T23:02:46.383136",
+      "status": "success",
+      "metrics": {
+        "string1_avg_power": 0,
+        "string2_avg_power": 0,
+        "power_imbalance": 0,
+        "mppt_efficiency": 0,
+        "issues_detected": 0
+      },
+      "alerts": [],
+      "recommendations": []
+    },
+    "INVERTER_06_2025-04-04_2025-04-05.csv": {
+      "file_path": "inverter/INVERTER_06_2025-04-04_2025-04-05.csv",
+      "timestamp": "2025-06-05T23:02:46.397650",
+      "status": "success",
+      "metrics": {
+        "string1_avg_power": 0,
+        "string2_avg_power": 0,
+        "power_imbalance": 0,
+        "mppt_efficiency": 0,
+        "issues_detected": 0
+      },
+      "alerts": [],
+      "recommendations": []
+    },
+    "INVERTER_07_2025-04-04_2025-04-05.csv": {
+      "file_path": "inverter/INVERTER_07_2025-04-04_2025-04-05.csv",
+      "timestamp": "2025-06-05T23:02:46.410482",
+      "status": "success",
+      "metrics": {
+        "string1_avg_power": 0,
+        "string2_avg_power": 0,
+        "power_imbalance": 0,
+        "mppt_efficiency": 0,
+        "issues_detected": 0
+      },
+      "alerts": [],
+      "recommendations": []
+    },
+    "INVERTER_08_2025-04-04_2025-04-05.csv": {
+      "file_path": "inverter/INVERTER_08_2025-04-04_2025-04-05.csv",
+      "timestamp": "2025-06-05T23:02:46.424010",
+      "status": "success",
+      "metrics": {
+        "string1_avg_power": 0,
+        "string2_avg_power": 0,
+        "power_imbalance": 0,
+        "mppt_efficiency": 0,
+        "issues_detected": 0
+      },
+      "alerts": [],
+      "recommendations": []
+    },
+    "INVERTER_09_2025-04-04_2025-04-05.csv": {
+      "file_path": "inverter/INVERTER_09_2025-04-04_2025-04-05.csv",
+      "timestamp": "2025-06-05T23:02:46.436935",
+      "status": "success",
+      "metrics": {
+        "string1_avg_power": 0,
+        "string2_avg_power": 0,
+        "power_imbalance": 0,
+        "mppt_efficiency": 0,
+        "issues_detected": 0
+      },
+      "alerts": [],
+      "recommendations": []
+    },
+    "INVERTER_10_2025-04-04_2025-04-05.csv": {
+      "file_path": "inverter/INVERTER_10_2025-04-04_2025-04-05.csv",
+      "timestamp": "2025-06-05T23:02:46.450823",
+      "status": "success",
+      "metrics": {
+        "string1_avg_power": 0,
+        "string2_avg_power": 0,
+        "power_imbalance": 0,
+        "mppt_efficiency": 0,
+        "issues_detected": 0
+      },
+      "alerts": [],
+      "recommendations": []
+    }
+  },
+  "fleet_summary": {
+    "total_systems": 9,
+    "avg_power_imbalance": 0.0,
+    "total_issues_detected": 0,
+    "critical_systems": [],
+    "fleet_status": "NORMAL"
+  },
+  "configuration": {
+    "analysis_types": {
+      "dual_string_mppt": true,
+      "real_time_monitoring": true,
+      "fleet_analysis": true
+    },
+    "output_formats": [
+      "dashboard",
+      "report",
+      "json"
+    ],
+    "alert_integration": true
+  }
+}
