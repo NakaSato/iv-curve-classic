@@ -106,13 +106,11 @@ class ProductionDualStringSystem:
         
         # Initialize data cleaner for real inverter data
         try:
-            from inverter_data_cleaner import InverterDataCleaner
             self.data_cleaner = InverterDataCleaner()
             logger.info("🧹 Real inverter data cleaning enabled")
-        except ImportError:
+        except Exception as e:
             self.data_cleaner = None
-            logger.warning("⚠️ Inverter data cleaner not available")
-        self.data_cleaner = InverterDataCleaner()  # Add data cleaner
+            logger.warning(f"⚠️ Inverter data cleaner not available: {e}")
         
         # Initialize monitoring
         self._initialize_monitoring()
@@ -264,8 +262,8 @@ class ProductionDualStringSystem:
             elif analysis_type == "mppt_analysis":
                 # Dual-string MPPT analysis
                 analyzer = self.mppt_analyzer(data_file)
-                results = analyzer.run_comprehensive_dual_string_analysis()
-                dashboard_file = analyzer.create_comprehensive_dashboard(results)
+                results = analyzer.run_complete_analysis()
+                dashboard_file = f"mppt_analysis_dashboard_{system_id}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.png"
                 
             elif analysis_type == "ai_powered":
                 # AI-powered next-generation analysis
@@ -396,7 +394,7 @@ class ProductionDualStringSystem:
         # 2. MPPT Analysis
         try:
             mppt_analyzer = self.mppt_analyzer(data_file)
-            mppt_results = mppt_analyzer.run_comprehensive_dual_string_analysis()
+            mppt_results = mppt_analyzer.run_complete_analysis()
             comprehensive_results['analysis_components']['mppt_analysis'] = mppt_results
             logger.info(f"✅ MPPT analysis completed for {system_id}")
         except Exception as e:

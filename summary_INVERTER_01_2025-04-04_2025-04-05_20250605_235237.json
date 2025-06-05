@@ -1,0 +1,89 @@
+{
+  "analysis_timestamp": "2025-06-05T23:52:37.775641",
+  "data_period": {
+    "start": "2025-04-04 00:01:00",
+    "end": "2025-04-05 23:59:00",
+    "duration": "1 days 23:58:00"
+  },
+  "data_summary": {
+    "raw_records": 1277,
+    "cleaned_records": 1277,
+    "data_quality_score": 99.51039528173436,
+    "cleaning_efficiency": 100.0
+  },
+  "string_summary": {
+    "total_strings": 20,
+    "active_strings": 15,
+    "avg_string_power": 1462.243112818604,
+    "total_string_energy": 1867182.5224999997,
+    "strings_with_issues": 20
+  },
+  "system_summary": {
+    "total_energy_kwh": 1802.9071900000001,
+    "system_efficiency_pct": 90.58511437024977,
+    "uptime_pct": 51.52701644479249,
+    "capacity_factor_pct": 282.36604385277997,
+    "fault_incidents": "0",
+    "warning_incidents": "0"
+  },
+  "performance_ranking": {
+    "top_performers": [
+      {
+        "string_id": 3,
+        "avg_power": 2164.6329678935003
+      },
+      {
+        "string_id": 5,
+        "avg_power": 2080.8468598277213
+      },
+      {
+        "string_id": 9,
+        "avg_power": 2052.5009710258414
+      },
+      {
+        "string_id": 13,
+        "avg_power": 2038.6513871473353
+      },
+      {
+        "string_id": 11,
+        "avg_power": 2025.8666797180892
+      }
+    ],
+    "bottom_performers": [
+      {
+        "string_id": 12,
+        "avg_power": 0.0
+      },
+      {
+        "string_id": 14,
+        "avg_power": 0.0
+      },
+      {
+        "string_id": 16,
+        "avg_power": 0.0
+      },
+      {
+        "string_id": 18,
+        "avg_power": 0.0
+      },
+      {
+        "string_id": 20,
+        "avg_power": 0.0
+      }
+    ]
+  },
+  "issues_summary": {
+    "High voltage detected": 20,
+    "Unstable voltage pattern": 20,
+    "Irregular current pattern": 15,
+    "Low current output": 5
+  },
+  "recommendations": [
+    "Invalid values detected - validation and cleaning needed",
+    "Investigate 5 underperforming strings",
+    "Check 20 strings with high voltage",
+    "System uptime below 95% - investigate downtime causes",
+    "High temperature detected in INVTemp(\u2103) - check cooling",
+    "High temperature detected in AMTemp1(\u2103) - check cooling"
+  ]
+}
