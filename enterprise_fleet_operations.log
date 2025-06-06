@@ -1,0 +1,27 @@
+2025-06-06 21:15:44,623 - enterprise_fleet_operations - INFO - Starting Enterprise Fleet Operations System
+2025-06-06 21:15:44,645 - enterprise_fleet_operations - INFO - Enhanced database schema initialized
+2025-06-06 21:15:44,645 - enterprise_fleet_operations - INFO - Enterprise Fleet Operations System initialized
+2025-06-06 21:15:44,645 - enterprise_fleet_operations - INFO - Running comprehensive fleet analysis...
+2025-06-06 21:15:44,645 - enterprise_fleet_operations - ERROR - Fleet analysis failed: [Errno 2] No such file or directory: 'cleaned_data'
+2025-06-06 21:15:44,645 - enterprise_fleet_operations - INFO - Enterprise Fleet Operations completed
+2025-06-06 21:19:00,099 - enterprise_fleet_operations - INFO - Starting Enterprise Fleet Operations System
+2025-06-06 21:19:00,103 - enterprise_fleet_operations - INFO - Enhanced database schema initialized
+2025-06-06 21:19:00,103 - enterprise_fleet_operations - INFO - Enterprise Fleet Operations System initialized
+2025-06-06 21:19:00,103 - enterprise_fleet_operations - INFO - Running comprehensive fleet analysis...
+2025-06-06 21:19:00,485 - enterprise_fleet_operations - INFO - Executive summary generated: executive_summary_20250606_211900.txt
+2025-06-06 21:19:00,485 - enterprise_fleet_operations - INFO - Enterprise report generated: enterprise_fleet_report_20250606_211900.json
+2025-06-06 21:19:00,485 - enterprise_fleet_operations - INFO - Fleet analysis completed in 0.38s
+2025-06-06 21:19:00,825 - enterprise_fleet_operations - INFO - Executive summary generated: executive_summary_20250606_211900.txt
+2025-06-06 21:19:00,826 - enterprise_fleet_operations - INFO - Enterprise report generated: enterprise_fleet_report_20250606_211900.json
+2025-06-06 21:19:00,826 - enterprise_fleet_operations - INFO - Fleet analysis completed in 0.34s
+2025-06-06 21:19:01,524 - enterprise_fleet_operations - INFO - Matplotlib dashboard generated: enterprise_dashboard_20250606_211901.png
+2025-06-06 21:19:01,524 - enterprise_fleet_operations - INFO - Enterprise Fleet Operations completed
+2025-06-06 21:25:21,283 - enterprise_fleet_operations - INFO - Enhanced database schema initialized
+2025-06-06 21:25:21,283 - enterprise_fleet_operations - INFO - Enterprise Fleet Operations System initialized
+2025-06-06 21:25:21,656 - enterprise_fleet_operations - INFO - Executive summary generated: executive_summary_20250606_212521.txt
+2025-06-06 21:25:21,656 - enterprise_fleet_operations - INFO - Enterprise report generated: enterprise_fleet_report_20250606_212521.json
+2025-06-06 21:25:21,656 - enterprise_fleet_operations - INFO - Fleet analysis completed in 0.37s
+2025-06-06 21:25:21,987 - enterprise_fleet_operations - INFO - Executive summary generated: executive_summary_20250606_212521.txt
+2025-06-06 21:25:21,987 - enterprise_fleet_operations - INFO - Enterprise report generated: enterprise_fleet_report_20250606_212521.json
+2025-06-06 21:25:21,987 - enterprise_fleet_operations - INFO - Fleet analysis completed in 0.33s
+2025-06-06 21:25:22,643 - enterprise_fleet_operations - INFO - Matplotlib dashboard generated: enterprise_dashboard_20250606_212522.png

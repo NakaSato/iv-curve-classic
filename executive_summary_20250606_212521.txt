@@ -1,0 +1,45 @@
+ENTERPRISE FLEET OPERATIONS - EXECUTIVE SUMMARY
+==================================================
+
+Report Generated: 2025-06-06 21:25:21
+Analysis Duration: 0.33s
+
+FLEET OVERVIEW
+--------------------
+Total Systems: 21
+Systems Online: 21
+System Availability: 100.0%
+Total Power Output: 139,404.1 W
+
+PERFORMANCE METRICS
+--------------------
+Average Efficiency: 80.2%
+Average Health Score: 74.0
+Average Temperature: 50.6°C
+
+SYSTEM HEALTH DISTRIBUTION
+------------------------------
+Excellent: 4 systems
+Good: 0 systems
+Fair: 7 systems
+Poor: 10 systems
+Critical: 0 systems
+
+RISK ASSESSMENT
+---------------
+Overall Risk Level: MEDIUM
+Risk Score: 45.5
+Critical Systems: 0
+High Risk Systems: 2
+
+MAINTENANCE PRIORITIES
+--------------------
+Critical Maintenance Tasks: 12
+Total Maintenance Tasks: 21
+
+MOST URGENT TASKS:
+- INVERTER_02: String replacement/repair required High string imbalance investigation Performance optimization ($3,400)
+- INVERTER_04: String replacement/repair required High string imbalance investigation ($2,800)
+- INVERTER_07: String replacement/repair required High string imbalance investigation ($2,800)
+- INVERTER_05: String replacement/repair required High string imbalance investigation ($2,800)
+- INVERTER_08: String replacement/repair required High string imbalance investigation ($2,800)

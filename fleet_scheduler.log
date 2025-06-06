@@ -126,3 +126,36 @@
 2025-06-06 19:59:45,403 - automated_fleet_scheduler - INFO - Alert queued and processed: INVERTER_08_health_1749214785
 2025-06-06 19:59:45,403 - automated_fleet_scheduler - INFO - Alert queued and processed: INVERTER_08_string_imbalance_1749214785
 2025-06-06 19:59:45,405 - automated_fleet_scheduler - INFO - Fleet summary generated: fleet_summary_20250606_195945.json
+2025-06-06 20:01:55,432 - automated_fleet_scheduler - INFO - Automated fleet monitoring stopped
+2025-06-06 20:54:12,896 - automated_fleet_scheduler - INFO - Automated Fleet Scheduler initialized
+2025-06-06 20:54:12,896 - automated_fleet_scheduler - INFO - Starting monitoring loop
+2025-06-06 20:54:12,897 - automated_fleet_scheduler - INFO - Starting scheduler loop
+2025-06-06 20:54:12,897 - automated_fleet_scheduler - INFO - Automated fleet monitoring and scheduling started
+2025-06-06 20:54:12,897 - automated_fleet_scheduler - INFO - Scanning 21 inverter systems
+2025-06-06 20:54:12,926 - automated_fleet_scheduler - INFO - Alert queued and processed: INVERTER_01_efficiency_1749218052
+2025-06-06 20:54:12,926 - automated_fleet_scheduler - INFO - Alert queued and processed: INVERTER_01_health_1749218052
+2025-06-06 20:54:12,927 - automated_fleet_scheduler - INFO - Alert queued and processed: INVERTER_01_string_imbalance_1749218052
+2025-06-06 20:54:12,955 - automated_fleet_scheduler - INFO - Alert queued and processed: INVERTER_09_health_1749218052
+2025-06-06 20:54:12,956 - automated_fleet_scheduler - INFO - Alert queued and processed: INVERTER_09_string_imbalance_1749218052
+2025-06-06 20:54:12,979 - automated_fleet_scheduler - INFO - Alert queued and processed: INVERTER_04_efficiency_1749218052
+2025-06-06 20:54:12,980 - automated_fleet_scheduler - INFO - Alert queued and processed: INVERTER_04_health_1749218052
+2025-06-06 20:54:12,981 - automated_fleet_scheduler - INFO - Alert queued and processed: INVERTER_04_string_imbalance_1749218052
+2025-06-06 20:54:13,005 - automated_fleet_scheduler - INFO - Alert queued and processed: INVERTER_06_health_1749218053
+2025-06-06 20:54:13,006 - automated_fleet_scheduler - INFO - Alert queued and processed: INVERTER_06_string_imbalance_1749218053
+2025-06-06 20:54:13,125 - automated_fleet_scheduler - INFO - Alert queued and processed: INVERTER_07_health_1749218053
+2025-06-06 20:54:13,126 - automated_fleet_scheduler - INFO - Alert queued and processed: INVERTER_07_string_imbalance_1749218053
+2025-06-06 20:54:13,186 - automated_fleet_scheduler - INFO - Alert queued and processed: INVERTER_05_health_1749218053
+2025-06-06 20:54:13,186 - automated_fleet_scheduler - INFO - Alert queued and processed: INVERTER_05_string_imbalance_1749218053
+2025-06-06 20:54:13,206 - automated_fleet_scheduler - INFO - Alert queued and processed: INVERTER_02_efficiency_1749218053
+2025-06-06 20:54:13,207 - automated_fleet_scheduler - INFO - Alert queued and processed: INVERTER_02_health_1749218053
+2025-06-06 20:54:13,207 - automated_fleet_scheduler - INFO - Alert queued and processed: INVERTER_02_string_imbalance_1749218053
+2025-06-06 20:54:13,274 - automated_fleet_scheduler - INFO - Alert queued and processed: INVERTER_03_efficiency_1749218053
+2025-06-06 20:54:13,275 - automated_fleet_scheduler - INFO - Alert queued and processed: INVERTER_03_health_1749218053
+2025-06-06 20:54:13,276 - automated_fleet_scheduler - INFO - Alert queued and processed: INVERTER_03_string_imbalance_1749218053
+2025-06-06 20:54:13,320 - automated_fleet_scheduler - INFO - Alert queued and processed: INVERTER_10_health_1749218053
+2025-06-06 20:54:13,321 - automated_fleet_scheduler - INFO - Alert queued and processed: INVERTER_10_string_imbalance_1749218053
+2025-06-06 20:54:13,364 - automated_fleet_scheduler - INFO - Alert queued and processed: INVERTER_08_efficiency_1749218053
+2025-06-06 20:54:13,365 - automated_fleet_scheduler - INFO - Alert queued and processed: INVERTER_08_health_1749218053
+2025-06-06 20:54:13,365 - automated_fleet_scheduler - INFO - Alert queued and processed: INVERTER_08_string_imbalance_1749218053
+2025-06-06 20:54:13,367 - automated_fleet_scheduler - INFO - Fleet summary generated: fleet_summary_20250606_205413.json
+2025-06-06 20:56:23,363 - automated_fleet_scheduler - INFO - Automated fleet monitoring stopped

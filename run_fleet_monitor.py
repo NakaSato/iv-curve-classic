@@ -54,7 +54,7 @@ def display_fleet_status(scheduler):
         
         print(f"{system_id:<12} {health_icon} {status.health_score:>5.1f} {status.efficiency:>10.1f}% {status.power_output:>10.0f} {status.temperature:>8.1f} {trend_icon} {status.performance_trend:<8}")
 
-def run_fleet_monitor(duration_minutes=5):
+def run_fleet_monitor(duration_minutes: float = 5):
     """Run the fleet monitor for specified duration."""
     print("🚀 AUTOMATED FLEET SCHEDULER - REAL-TIME MONITORING")
     print("=" * 80)
