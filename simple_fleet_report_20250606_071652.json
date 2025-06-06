@@ -1,0 +1,28 @@
+{
+  "timestamp": "2025-06-06T07:16:52.258260",
+  "total_systems": 21,
+  "fleet_metrics": {
+    "average_efficiency": 0.0,
+    "average_health": 100.0,
+    "total_power": 0.0,
+    "max_temperature": 61.3,
+    "systems_normal": 1,
+    "systems_warning": 0,
+    "systems_alert": 0,
+    "total_alerts": 0
+  },
+  "system_analyses": {
+    "INVERTER": {
+      "data_points": 1200,
+      "efficiency": 0,
+      "health_score": 100.0,
+      "status": "normal",
+      "max_temp": 61.3,
+      "avg_power": 0
+    }
+  },
+  "alerts": [],
+  "recommendations": [
+    "Fleet efficiency below 90% - schedule maintenance checks"
+  ]
+}

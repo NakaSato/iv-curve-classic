@@ -1,0 +1,530 @@
+{
+  "timestamp": "2025-06-06T07:18:55.157069",
+  "analysis_metadata": {
+    "data_source": "real_inverter_logs",
+    "parameters_analyzed": 258,
+    "string_configuration": "32-string",
+    "analysis_type": "production_fleet_monitoring"
+  },
+  "total_systems": 21,
+  "fleet_metrics": {
+    "average_efficiency": 92.97948675317627,
+    "efficiency_std": 3.170057848459739,
+    "average_health": 87.14285714285714,
+    "health_std": 5.890150893739516,
+    "total_fleet_power": 542385.4857290129,
+    "average_system_power": 25827.880272810136,
+    "max_fleet_temperature": 71.7,
+    "average_temperature": 67.60476190476192,
+    "total_active_strings": 286,
+    "average_strings_per_system": 13.619047619047619,
+    "systems_normal": 0,
+    "systems_warning": 19,
+    "systems_alert": 2,
+    "total_alerts": 25,
+    "efficiency_range": {
+      "min": 88.49934829652975,
+      "max": 99.09765387607357
+    }
+  },
+  "system_analyses": {
+    "INVERTER": {
+      "inverter_id": "INVERTER",
+      "data_points": 1200,
+      "date_range": {
+        "start": NaN,
+        "end": NaN
+      },
+      "efficiency": 99.09765387607357,
+      "health_score": 90.0,
+      "status": "warning",
+      "performance_metrics": {
+        "efficiency": {
+          "mean": 99.09765387607357,
+          "median": 99.12687576448921,
+          "std": 2.9748560765489636,
+          "min": 1.005109305636988,
+          "max": 100.0
+        },
+        "total_power": {
+          "mean": 23564.997566666665,
+          "peak": 52710.35,
+          "min": 0.0
+        },
+        "pv_string_power": {
+          "total_mean": 23811.05775,
+          "average_per_string": 1488.191109375,
+          "string_count_active": 16,
+          "imbalance_cv": 144.13435813190065
+        },
+        "temperature": {
+          "INVTemp(\u2103)": {
+            "mean": 52.27691666666667,
+            "max": 61.3,
+            "min": 0.0
+          },
+          "AMTemp1(\u2103)": {
+            "mean": 46.783833333333334,
+            "max": 53.7,
+            "min": 0.0
+          },
+          "BTTemp(\u2103)": {
+            "mean": 50.06433333333333,
+            "max": 60.9,
+            "min": 0.0
+          },
+          "OUTTemp(\u2103)": {
+            "mean": 0.0,
+            "max": 0.0,
+            "min": 0.0
+          },
+          "AMTemp2(\u2103)": {
+            "mean": 44.01675,
+            "max": 54.0,
+            "min": 0.0
+          }
+        },
+        "max_temperature": 61.3,
+        "ac_power": {
+          "mean": 23328.851916666667,
+          "peak": 51921.1,
+          "min": 0.0
+        },
+        "frequency": {
+          "mean": 49.864583333333336,
+          "std": 2.4975792770053022,
+          "min": 0.0,
+          "max": 50.0
+        },
+        "daily_energy": {
+          "latest": 286.0,
+          "max": 317.7,
+          "mean": 148.6535
+        },
+        "faults": {
+          "FaultCode": 0,
+          "WarnCode": 0,
+          "PidFaultCode": 0
+        }
+      },
+      "string_analysis": {
+        "active_strings": 8,
+        "total_strings": 32,
+        "total_power": 23564.997566666665,
+        "average_power": 2945.624695833333,
+        "power_std": 159.77293284324728,
+        "imbalance_percentage": 5.42407636211261,
+        "string_details": {
+          "String_1": {
+            "mean_power": 2916.5442083333337,
+            "peak_power": 6822.94,
+            "active": true
+          },
+          "String_2": {
+            "mean_power": 2856.541733333333,
+            "peak_power": 6460.659999999999,
+            "active": true
+          },
+          "String_3": {
+            "mean_power": 3097.437125,
+            "peak_power": 6754.72,
+            "active": true
+          },
+          "String_4": {
+            "mean_power": 3172.6251,
+            "peak_power": 6349.35,
+            "active": true
+          },
+          "String_5": {
+            "mean_power": 2750.942825,
+            "peak_power": 6796.44,
+            "active": true
+          },
+          "String_6": {
+            "mean_power": 0,
+            "peak_power": 0,
+            "active": false
+          },
+          "String_7": {
+            "mean_power": 2772.4346333333337,
+            "peak_power": 6482.810000000001,
+            "active": true
+          },
+          "String_8": {
+            "mean_power": 0,
+            "peak_power": 0,
+            "active": false
+          },
+          "String_9": {
+            "mean_power": 2845.584891666667,
+            "peak_power": 6684.969999999999,
+            "active": true
+          },
+          "String_10": {
+            "mean_power": 0,
+            "peak_power": 0,
+            "active": false
+          },
+          "String_11": {
+            "mean_power": 3152.88705,
+            "peak_power": 6889.0199999999995,
+            "active": true
+          },
+          "String_12": {
+            "mean_power": 0,
+            "peak_power": 0,
+            "active": false
+          },
+          "String_13": {
+            "mean_power": 0,
+            "peak_power": 0,
+            "active": false
+          },
+          "String_14": {
+            "mean_power": 0,
+            "peak_power": 0,
+            "active": false
+          },
+          "String_15": {
+            "mean_power": 0,
+            "peak_power": 0,
+            "active": false
+          },
+          "String_16": {
+            "mean_power": 0,
+            "peak_power": 0,
+            "active": false
+          },
+          "String_17": {
+            "mean_power": 0,
+            "peak_power": 0,
+            "active": false
+          },
+          "String_18": {
+            "mean_power": 0,
+            "peak_power": 0,
+            "active": false
+          },
+          "String_19": {
+            "mean_power": 0,
+            "peak_power": 0,
+            "active": false
+          },
+          "String_20": {
+            "mean_power": 0,
+            "peak_power": 0,
+            "active": false
+          },
+          "String_21": {
+            "mean_power": 0,
+            "peak_power": 0,
+            "active": false
+          },
+          "String_22": {
+            "mean_power": 0,
+            "peak_power": 0,
+            "active": false
+          },
+          "String_23": {
+            "mean_power": 0,
+            "peak_power": 0,
+            "active": false
+          },
+          "String_24": {
+            "mean_power": 0,
+            "peak_power": 0,
+            "active": false
+          },
+          "String_25": {
+            "mean_power": 0,
+            "peak_power": 0,
+            "active": false
+          },
+          "String_26": {
+            "mean_power": 0,
+            "peak_power": 0,
+            "active": false
+          },
+          "String_27": {
+            "mean_power": 0,
+            "peak_power": 0,
+            "active": false
+          },
+          "String_28": {
+            "mean_power": 0,
+            "peak_power": 0,
+            "active": false
+          },
+          "String_29": {
+            "mean_power": 0,
+            "peak_power": 0,
+            "active": false
+          },
+          "String_30": {
+            "mean_power": 0,
+            "peak_power": 0,
+            "active": false
+          },
+          "String_31": {
+            "mean_power": 0,
+            "peak_power": 0,
+            "active": false
+          },
+          "String_32": {
+            "mean_power": 0,
+            "peak_power": 0,
+            "active": false
+          }
+        }
+      },
+      "alerts": [
+        {
+          "type": "string_imbalance",
+          "value": 144.13435813190065,
+          "threshold": 20,
+          "severity": "medium",
+          "inverter_id": "INVERTER"
+        }
+      ]
+    }
+  },
+  "alerts": [
+    {
+      "type": "string_imbalance",
+      "value": 91.73779216638671,
+      "threshold": 20,
+      "severity": "medium",
+      "inverter_id": "INVERTER"
+    },
+    {
+      "type": "string_imbalance",
+      "value": 91.73779216638671,
+      "threshold": 20,
+      "severity": "medium",
+      "inverter_id": "INVERTER"
+    },
+    {
+      "type": "string_imbalance",
+      "value": 91.73779216638671,
+      "threshold": 20,
+      "severity": "medium",
+      "inverter_id": "INVERTER"
+    },
+    {
+      "type": "string_imbalance",
+      "value": 91.73779216638671,
+      "threshold": 20,
+      "severity": "medium",
+      "inverter_id": "INVERTER"
+    },
+    {
+      "type": "string_imbalance",
+      "value": 91.73779216638671,
+      "threshold": 20,
+      "severity": "medium",
+      "inverter_id": "INVERTER"
+    },
+    {
+      "type": "string_imbalance",
+      "value": 91.73779216638671,
+      "threshold": 20,
+      "severity": "medium",
+      "inverter_id": "INVERTER"
+    },
+    {
+      "type": "low_efficiency",
+      "value": 88.49934829652975,
+      "threshold": 90,
+      "severity": "medium",
+      "inverter_id": "INVERTER"
+    },
+    {
+      "type": "string_imbalance",
+      "value": 91.30194478599951,
+      "threshold": 20,
+      "severity": "medium",
+      "inverter_id": "INVERTER"
+    },
+    {
+      "type": "low_efficiency",
+      "value": 88.5470335718872,
+      "threshold": 90,
+      "severity": "medium",
+      "inverter_id": "INVERTER"
+    },
+    {
+      "type": "string_imbalance",
+      "value": 92.51297059684563,
+      "threshold": 20,
+      "severity": "medium",
+      "inverter_id": "INVERTER"
+    },
+    {
+      "type": "string_imbalance",
+      "value": 86.0148999964037,
+      "threshold": 20,
+      "severity": "medium",
+      "inverter_id": "INVERTER"
+    },
+    {
+      "type": "fault_detected",
+      "fault_type": "WarnCode",
+      "count": 1,
+      "severity": "high",
+      "inverter_id": "INVERTER"
+    },
+    {
+      "type": "string_imbalance",
+      "value": 83.30200106411613,
+      "threshold": 20,
+      "severity": "medium",
+      "inverter_id": "INVERTER"
+    },
+    {
+      "type": "string_imbalance",
+      "value": 83.00587366082495,
+      "threshold": 20,
+      "severity": "medium",
+      "inverter_id": "INVERTER"
+    },
+    {
+      "type": "string_imbalance",
+      "value": 83.00587366082495,
+      "threshold": 20,
+      "severity": "medium",
+      "inverter_id": "INVERTER"
+    },
+    {
+      "type": "string_imbalance",
+      "value": 83.00587366082495,
+      "threshold": 20,
+      "severity": "medium",
+      "inverter_id": "INVERTER"
+    },
+    {
+      "type": "string_imbalance",
+      "value": 83.00587366082495,
+      "threshold": 20,
+      "severity": "medium",
+      "inverter_id": "INVERTER"
+    },
+    {
+      "type": "string_imbalance",
+      "value": 87.44862800736003,
+      "threshold": 20,
+      "severity": "medium",
+      "inverter_id": "INVERTER"
+    },
+    {
+      "type": "string_imbalance",
+      "value": 87.86109419433082,
+      "threshold": 20,
+      "severity": "medium",
+      "inverter_id": "INVERTER"
+    },
+    {
+      "type": "fault_detected",
+      "fault_type": "WarnCode",
+      "count": 1,
+      "severity": "high",
+      "inverter_id": "INVERTER"
+    },
+    {
+      "type": "string_imbalance",
+      "value": 148.45179645969074,
+      "threshold": 20,
+      "severity": "medium",
+      "inverter_id": "INVERTER"
+    },
+    {
+      "type": "string_imbalance",
+      "value": 148.45179645969074,
+      "threshold": 20,
+      "severity": "medium",
+      "inverter_id": "INVERTER"
+    },
+    {
+      "type": "string_imbalance",
+      "value": 148.45179645969074,
+      "threshold": 20,
+      "severity": "medium",
+      "inverter_id": "INVERTER"
+    },
+    {
+      "type": "string_imbalance",
+      "value": 148.45179645969074,
+      "threshold": 20,
+      "severity": "medium",
+      "inverter_id": "INVERTER"
+    },
+    {
+      "type": "string_imbalance",
+      "value": 144.13435813190065,
+      "threshold": 20,
+      "severity": "medium",
+      "inverter_id": "INVERTER"
+    }
+  ],
+  "recommendations": [
+    "\u26a0\ufe0f Multiple alerts detected - Prioritize system inspections",
+    "\ud83d\udea8 Critical systems detected - Immediate intervention required",
+    "\ud83d\udcca Multiple underperforming systems - Consider fleet-wide optimization",
+    "\ud83d\udd0c 21 systems have low active string counts - Check string connections"
+  ],
+  "string_analysis": {},
+  "performance_rankings": {
+    "top_performers": [
+      {
+        "inverter_id": "INVERTER",
+        "efficiency": 99.09765387607357,
+        "health_score": 90.0
+      },
+      {
+        "inverter_id": "INVERTER",
+        "efficiency": 97.70926219333117,
+        "health_score": 90.0
+      },
+      {
+        "inverter_id": "INVERTER",
+        "efficiency": 97.70926219333117,
+        "health_score": 90.0
+      },
+      {
+        "inverter_id": "INVERTER",
+        "efficiency": 97.70926219333117,
+        "health_score": 90.0
+      },
+      {
+        "inverter_id": "INVERTER",
+        "efficiency": 97.70926219333117,
+        "health_score": 90.0
+      }
+    ],
+    "needs_attention": [
+      {
+        "inverter_id": "INVERTER",
+        "efficiency": 93.08353576839568,
+        "health_score": 75.0,
+        "alert_count": 2
+      },
+      {
+        "inverter_id": "INVERTER",
+        "efficiency": 91.23764520775212,
+        "health_score": 75.0,
+        "alert_count": 2
+      },
+      {
+        "inverter_id": "INVERTER",
+        "efficiency": 88.5470335718872,
+        "health_score": 75.0,
+        "alert_count": 2
+      },
+      {
+        "inverter_id": "INVERTER",
+        "efficiency": 88.49934829652975,
+        "health_score": 75.0,
+        "alert_count": 2
+      }
+    ]
+  }
+}

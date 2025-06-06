@@ -394,7 +394,7 @@ class ProductionDualStringSystem:
         # 2. MPPT Analysis
         try:
             mppt_analyzer = self.mppt_analyzer(data_file)
-            mppt_results = mppt_analyzer.run_complete_analysis()
+            mppt_results = mppt_analyzer.run_comprehensive_dual_string_analysis()
             comprehensive_results['analysis_components']['mppt_analysis'] = mppt_results
             logger.info(f"✅ MPPT analysis completed for {system_id}")
         except Exception as e:
