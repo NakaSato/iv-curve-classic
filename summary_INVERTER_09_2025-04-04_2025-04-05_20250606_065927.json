@@ -1,0 +1,86 @@
+{
+  "analysis_timestamp": "2025-06-06T06:59:27.014579",
+  "data_period": {
+    "start": "NaT",
+    "end": "NaT",
+    "duration": "NaT"
+  },
+  "data_summary": {
+    "raw_records": 1190,
+    "cleaned_records": 1190,
+    "data_quality_score": 99.43693693693693,
+    "cleaning_efficiency": 100.0
+  },
+  "string_summary": {
+    "total_strings": 12,
+    "active_strings": 5,
+    "avg_string_power": 1166.9159054621848,
+    "total_string_energy": 833177.9565000001,
+    "strings_with_issues": 12
+  },
+  "system_summary": {
+    "total_energy_kwh": 804.165025,
+    "system_efficiency_pct": 101.92618735498584,
+    "uptime_pct": 99.15966386554622,
+    "capacity_factor_pct": 135.1537857142857,
+    "fault_incidents": "0",
+    "warning_incidents": "0"
+  },
+  "performance_ranking": {
+    "top_performers": [
+      {
+        "string_id": 3,
+        "avg_power": 2871.1629075630253
+      },
+      {
+        "string_id": 9,
+        "avg_power": 2860.145680672269
+      },
+      {
+        "string_id": 5,
+        "avg_power": 2856.973949579832
+      },
+      {
+        "string_id": 7,
+        "avg_power": 2724.594857142857
+      },
+      {
+        "string_id": 1,
+        "avg_power": 2690.009168067227
+      }
+    ],
+    "bottom_performers": [
+      {
+        "string_id": 6,
+        "avg_power": 0.0
+      },
+      {
+        "string_id": 8,
+        "avg_power": 0.0
+      },
+      {
+        "string_id": 10,
+        "avg_power": 0.0
+      },
+      {
+        "string_id": 11,
+        "avg_power": 0.0
+      },
+      {
+        "string_id": 12,
+        "avg_power": 0.0
+      }
+    ]
+  },
+  "issues_summary": {
+    "High voltage detected": 12,
+    "Unstable voltage pattern": 10,
+    "Irregular current pattern": 6,
+    "Low current output": 7
+  },
+  "recommendations": [
+    "Invalid values detected - validation and cleaning needed",
+    "Investigate 7 underperforming strings",
+    "Check 12 strings with high voltage"
+  ]
+}

@@ -1,0 +1,36 @@
+🚀 COMPREHENSIVE FLEET ANALYSIS REPORT
+================================================================================
+Generated: 2025-06-06 06:59:33
+Analysis Type: Complete 10-Inverter Fleet Processing
+
+📊 PROCESSING SUMMARY
+------------------------------
+Total Systems: 10
+Successful Analyses: 10
+Failed Analyses: 0
+Total Processing Time: 36.2s
+Average Processing Time: 3.6s
+
+📈 FLEET ANALYTICS
+------------------------------
+Total Fleet Power: 16034.1 kW
+Average Efficiency: 94.5%
+Average Health Score: 94.5%
+Average Data Quality: 99.4%
+Total Active Strings: 142
+
+🔧 MAINTENANCE RECOMMENDATIONS
+------------------------------
+Immediate Attention: 0 systems
+Scheduled Maintenance: 0 systems
+Enhanced Monitoring: 8 systems
+Excellent Condition: 2 systems
+
+💰 ECONOMIC IMPACT
+------------------------------
+Fleet Power: 16034.1 kW
+Average Efficiency: 94.5%
+Potential Annual Revenue: $10,512.00
+Actual Annual Revenue: $9,933.20
+Annual Revenue Loss: $578.80
+Maintenance ROI Estimate: $463.04

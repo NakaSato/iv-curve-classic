@@ -1,0 +1,87 @@
+{
+  "analysis_timestamp": "2025-06-06T06:59:23.424253",
+  "data_period": {
+    "start": "NaT",
+    "end": "NaT",
+    "duration": "NaT"
+  },
+  "data_summary": {
+    "raw_records": 1277,
+    "cleaned_records": 1277,
+    "data_quality_score": 99.43693693693693,
+    "cleaning_efficiency": 100.0
+  },
+  "string_summary": {
+    "total_strings": 20,
+    "active_strings": 15,
+    "avg_string_power": 1324.2129678935005,
+    "total_string_energy": 1691019.9600000002,
+    "strings_with_issues": 20
+  },
+  "system_summary": {
+    "total_energy_kwh": 1627.7298299999998,
+    "system_efficiency_pct": 92.32510902687136,
+    "uptime_pct": 52.70164447924823,
+    "capacity_factor_pct": 254.93027877838682,
+    "fault_incidents": "0",
+    "warning_incidents": "1"
+  },
+  "performance_ranking": {
+    "top_performers": [
+      {
+        "string_id": 15,
+        "avg_power": 2183.576413469068
+      },
+      {
+        "string_id": 5,
+        "avg_power": 2166.5669224745498
+      },
+      {
+        "string_id": 3,
+        "avg_power": 2166.4926233359442
+      },
+      {
+        "string_id": 13,
+        "avg_power": 2140.2394283476897
+      },
+      {
+        "string_id": 11,
+        "avg_power": 2109.5494909945187
+      }
+    ],
+    "bottom_performers": [
+      {
+        "string_id": 10,
+        "avg_power": 0.0
+      },
+      {
+        "string_id": 12,
+        "avg_power": 0.0
+      },
+      {
+        "string_id": 14,
+        "avg_power": 0.0
+      },
+      {
+        "string_id": 16,
+        "avg_power": 0.0
+      },
+      {
+        "string_id": 20,
+        "avg_power": 0.0
+      }
+    ]
+  },
+  "issues_summary": {
+    "High voltage detected": 20,
+    "Unstable voltage pattern": 20,
+    "Irregular current pattern": 15,
+    "Low current output": 6
+  },
+  "recommendations": [
+    "Invalid values detected - validation and cleaning needed",
+    "Investigate 5 underperforming strings",
+    "Check 20 strings with high voltage",
+    "System uptime below 95% - investigate downtime causes"
+  ]
+}
