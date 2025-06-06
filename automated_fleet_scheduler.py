@@ -283,3 +283,332 @@ class PredictiveMaintenanceEngine:
         except Exception as e:
             logger.error(f"Performance prediction failed: {e}")
             return system_data.get('efficiency', 0)
+
+class AutomatedFleetScheduler:
+    """Main automated fleet scheduler and monitoring system"""
+    
+    def __init__(self, config_path: str = "fleet_scheduler_config.json"):
+        self.config = self.load_config(config_path)
+        self.notification_manager = NotificationManager(self.config)
+        self.predictive_engine = PredictiveMaintenanceEngine()
+        
+        # Fleet state
+        self.fleet_systems = {}
+        self.maintenance_queue = []
+        self.active_alerts = []
+        self.alert_history = []
+        self.system_health_history = {}
+        
+        # Monitoring control
+        self.monitoring_active = False
+        self.monitoring_thread = None
+        
+        # Alert cooldown tracking
+        self.alert_cooldowns = {}
+        
+        logger.info("Automated Fleet Scheduler initialized")
+    
+    def load_config(self, config_path: str) -> Dict[str, Any]:
+        """Load scheduler configuration"""
+        default_config = {
+            "monitoring": {
+                "interval_seconds": 300,  # 5 minutes
+                "data_retention_days": 30,
+                "enable_predictive_maintenance": True
+            },
+            "thresholds": {
+                "efficiency_min": 85.0,
+                "efficiency_critical": 80.0,
+                "temperature_max": 65.0,
+                "temperature_critical": 70.0,
+                "power_deviation_max": 15.0,
+                "string_imbalance_max": 20.0
+            },
+            "maintenance": {
+                "auto_schedule": True,
+                "max_concurrent_tasks": 5,
+                "working_hours_start": 8,
+                "working_hours_end": 17
+            },
+            "alerts": {
+                "cooldown_minutes": 60,
+                "max_alerts_per_hour": 10,
+                "severity_escalation_minutes": 30
+            },
+            "email": {
+                "enabled": False,
+                "smtp_server": "",
+                "smtp_port": 587,
+                "username": "",
+                "password": "",
+                "recipients": []
+            },
+            "webhooks": {
+                "enabled": False,
+                "urls": []
+            }
+        }
+        
+        try:
+            if Path(config_path).exists():
+                with open(config_path, 'r') as f:
+                    user_config = json.load(f)
+                # Merge with defaults
+                default_config.update(user_config)
+        except Exception as e:
+            logger.warning(f"Failed to load config, using defaults: {e}")
+        
+        return default_config
+    
+    def discover_fleet_systems(self, data_directory: str = ".") -> List[str]:
+        """Discover available fleet systems from cleaned CSV files"""
+        try:
+            data_path = Path(data_directory)
+            csv_files = list(data_path.glob("cleaned_INVERTER_*.csv"))
+            
+            system_ids = set()
+            for file_path in csv_files:
+                # Extract system ID from filename
+                filename = file_path.name
+                if "cleaned_INVERTER_" in filename:
+                    parts = filename.split("_")
+                    if len(parts) >= 2:
+                        system_id = f"INVERTER_{parts[1]}"
+                        system_ids.add(system_id)
+            
+            systems = sorted(list(system_ids))
+            logger.info(f"Discovered {len(systems)} fleet systems: {systems}")
+            return systems
+            
+        except Exception as e:
+            logger.error(f"Fleet discovery failed: {e}")
+            return []
+    
+    def load_system_data(self, system_id: str, data_directory: str = ".") -> Optional[pd.DataFrame]:
+        """Load latest data for a system"""
+        try:
+            data_path = Path(data_directory)
+            # Find the most recent file for this system
+            pattern = f"cleaned_{system_id}_*.csv"
+            files = list(data_path.glob(pattern))
+            
+            if not files:
+                logger.warning(f"No data files found for {system_id}")
+                return None
+            
+            # Sort by modification time, get the most recent
+            latest_file = max(files, key=lambda x: x.stat().st_mtime)
+            
+            df = pd.read_csv(latest_file)
+            logger.debug(f"Loaded {len(df)} records for {system_id}")
+            return df
+            
+        except Exception as e:
+            logger.error(f"Failed to load data for {system_id}: {e}")
+            return None
+    
+    def analyze_system_health(self, system_id: str, df: pd.DataFrame) -> SystemHealth:
+        """Analyze current system health"""
+        try:
+            # Get latest record
+            latest = df.iloc[-1] if len(df) > 0 else pd.Series()
+            
+            # Calculate efficiency
+            efficiency = latest.get('Conversion_Efficiency(%)', 0)
+            
+            # Get temperature
+            temperature = latest.get('INVTemp(℃)', 0)
+            
+            # Calculate total power output
+            total_power = latest.get('Pac(W)', 0)
+            
+            # Analyze string health
+            string_health = {}
+            string_powers = {}
+            for i in range(1, 33):  # 32 strings
+                col_name = f'Pstr{i}(W)'
+                if col_name in df.columns:
+                    power = latest.get(col_name, 0)
+                    string_powers[f'string_{i}'] = power
+                    # Health based on power relative to average
+                    avg_power = df[col_name].mean() if col_name in df.columns else 1
+                    health = min(100, (power / avg_power * 100)) if avg_power > 0 else 0
+                    string_health[f'string_{i}'] = health
+            
+            # Check fault codes
+            fault_codes = []
+            for fault_col in ['FaultCode', 'WarnCode', 'PidFaultCode']:
+                if fault_col in df.columns and latest.get(fault_col, 0) != 0:
+                    fault_codes.append(f"{fault_col}:{latest.get(fault_col)}")
+            
+            # Calculate overall health score
+            health_score = self.calculate_health_score(
+                efficiency, temperature, len(fault_codes), string_health
+            )
+            
+            health = SystemHealth(
+                system_id=system_id,
+                efficiency=efficiency,
+                temperature=temperature,
+                power_output=total_power,
+                string_health=string_health,
+                fault_codes=fault_codes,
+                health_score=health_score
+            )
+            
+            # Add to predictive engine
+            system_data = {
+                'system_id': system_id,
+                'efficiency': efficiency,
+                'temperature': temperature,
+                'power_output': total_power,
+                'fault_codes': fault_codes,
+                'string_powers': string_powers
+            }
+            self.predictive_engine.add_historical_data(system_data)
+            
+            return health
+            
+        except Exception as e:
+            logger.error(f"Health analysis failed for {system_id}: {e}")
+            return SystemHealth(
+                system_id=system_id, efficiency=0, temperature=0,
+                power_output=0, string_health={}, fault_codes=[],
+                health_score=0
+            )
+    
+    def calculate_health_score(self, efficiency: float, temperature: float, 
+                             fault_count: int, string_health: Dict[str, float]) -> float:
+        """Calculate overall system health score (0-100)"""
+        try:
+            # Efficiency component (40% weight)
+            eff_score = min(100, efficiency * 1.15) if efficiency > 0 else 0
+            
+            # Temperature component (20% weight)
+            temp_threshold = self.config['thresholds']['temperature_max']
+            temp_score = max(0, 100 - (temperature - 25) * 2) if temperature > 25 else 100
+            
+            # Fault component (20% weight)
+            fault_score = max(0, 100 - fault_count * 20)
+            
+            # String balance component (20% weight)
+            string_scores = list(string_health.values())
+            string_score = np.mean(string_scores) if string_scores else 0
+            
+            # Weighted average
+            health_score = (
+                eff_score * 0.4 +
+                temp_score * 0.2 +
+                fault_score * 0.2 +
+                string_score * 0.2
+            )
+            
+            return float(max(0, min(100, health_score)))
+            
+        except Exception as e:
+            logger.error(f"Health score calculation failed: {e}")
+            return 0
+    
+    def check_alert_conditions(self, health: SystemHealth) -> List[Alert]:
+        """Check for alert conditions"""
+        alerts = []
+        thresholds = self.config['thresholds']
+        
+        try:
+            # Efficiency alerts
+            if health.efficiency < thresholds['efficiency_critical']:
+                alerts.append(Alert(
+                    system_id=health.system_id,
+                    alert_type="EFFICIENCY_CRITICAL",
+                    severity="CRITICAL",
+                    message=f"Efficiency critically low: {health.efficiency:.1f}%",
+                    value=health.efficiency,
+                    threshold=thresholds['efficiency_critical']
+                ))
+            elif health.efficiency < thresholds['efficiency_min']:
+                alerts.append(Alert(
+                    system_id=health.system_id,
+                    alert_type="EFFICIENCY_LOW",
+                    severity="HIGH",
+                    message=f"Efficiency below threshold: {health.efficiency:.1f}%",
+                    value=health.efficiency,
+                    threshold=thresholds['efficiency_min']
+                ))
+            
+            # Temperature alerts
+            if health.temperature > thresholds['temperature_critical']:
+                alerts.append(Alert(
+                    system_id=health.system_id,
+                    alert_type="TEMPERATURE_CRITICAL",
+                    severity="CRITICAL",
+                    message=f"Temperature critically high: {health.temperature:.1f}°C",
+                    value=health.temperature,
+                    threshold=thresholds['temperature_critical']
+                ))
+            elif health.temperature > thresholds['temperature_max']:
+                alerts.append(Alert(
+                    system_id=health.system_id,
+                    alert_type="TEMPERATURE_HIGH",
+                    severity="HIGH",
+                    message=f"Temperature above threshold: {health.temperature:.1f}°C",
+                    value=health.temperature,
+                    threshold=thresholds['temperature_max']
+                ))
+            
+            # Fault code alerts
+            if health.fault_codes:
+                alerts.append(Alert(
+                    system_id=health.system_id,
+                    alert_type="FAULT_DETECTED",
+                    severity="HIGH",
+                    message=f"Fault codes detected: {', '.join(health.fault_codes)}",
+                    value=len(health.fault_codes)
+                ))
+            
+            # String imbalance alerts
+            if health.string_health:
+                string_powers = list(health.string_health.values())
+                if len(string_powers) > 1:
+                    avg_power = np.mean(string_powers)
+                    max_deviation = max(abs(p - avg_power) for p in string_powers)
+                    deviation_pct = (max_deviation / avg_power * 100) if avg_power > 0 else 0
+                    
+                    if deviation_pct > thresholds['string_imbalance_max']:
+                        alerts.append(Alert(
+                            system_id=health.system_id,
+                            alert_type="STRING_IMBALANCE",
+                            severity="MEDIUM",
+                            message=f"String power imbalance: {deviation_pct:.1f}%",
+                            value=float(deviation_pct),
+                            threshold=thresholds['string_imbalance_max']
+                        ))
+            
+            # Health score alerts
+            if health.health_score < 70:
+                severity = "CRITICAL" if health.health_score < 50 else "HIGH"
+                alerts.append(Alert(
+                    system_id=health.system_id,
+                    alert_type="HEALTH_SCORE_LOW",
+                    severity=severity,
+                    message=f"System health score low: {health.health_score:.1f}",
+                    value=health.health_score,
+                    threshold=70
+                ))
+            
+            return alerts
+            
+        except Exception as e:
+            logger.error(f"Alert condition check failed for {health.system_id}: {e}")
+            return []
+    
+    def should_send_alert(self, alert: Alert) -> bool:
+        """Check if alert should be sent (respecting cooldowns)"""
+        alert_key = f"{alert.system_id}_{alert.alert_type}"
+        cooldown_minutes = self.config['alerts']['cooldown_minutes']
+        
+        if alert_key in self.alert_cooldowns:
+            last_sent = self.alert_cooldowns[alert_key]
+            if datetime.now() - last_sent < timedelta(minutes=cooldown_minutes):
+                return False
+        
+        return True
