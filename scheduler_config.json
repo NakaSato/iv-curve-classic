@@ -1,0 +1,39 @@
+{
+  "monitoring": {
+    "interval_seconds": 300,
+    "data_retention_days": 365,
+    "alert_cooldown_minutes": 60
+  },
+  "thresholds": {
+    "efficiency_min": 85.0,
+    "temperature_max": 65.0,
+    "health_score_min": 70.0,
+    "string_power_variance_max": 20.0
+  },
+  "email": {
+    "enabled": false,
+    "smtp_server": "smtp.gmail.com",
+    "smtp_port": 587,
+    "use_tls": true,
+    "username": "your_email@gmail.com",
+    "password": "your_app_password",
+    "smtp_from": "fleet_monitor@yourcompany.com",
+    "recipients": [
+      "technician@yourcompany.com",
+      "manager@yourcompany.com"
+    ]
+  },
+  "webhooks": {
+    "enabled": false,
+    "urls": [
+      "https://hooks.slack.com/services/YOUR/SLACK/WEBHOOK"
+    ],
+    "timeout": 30
+  },
+  "maintenance": {
+    "auto_schedule": true,
+    "default_duration_hours": 2,
+    "business_hours_only": true,
+    "advance_notice_days": 3
+  }
+}

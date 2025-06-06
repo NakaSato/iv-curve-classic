@@ -1,0 +1,21 @@
+{
+  "timestamp": "2025-06-06T19:47:20.411718",
+  "total_systems": 1,
+  "fleet_metrics": {
+    "average_health_score": 100.0,
+    "average_efficiency": NaN,
+    "total_power_output": 0.0,
+    "systems_with_faults": 0,
+    "systems_needing_attention": 0
+  },
+  "system_statuses": {
+    "INVERTER": {
+      "health_score": 100.0,
+      "efficiency": NaN,
+      "temperature": 43.8,
+      "power_output": 0.0,
+      "fault_codes": [],
+      "performance_trend": "stable"
+    }
+  }
+}

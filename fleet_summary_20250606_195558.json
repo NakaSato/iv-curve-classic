@@ -1,0 +1,93 @@
+{
+  "timestamp": "2025-06-06T19:55:58.239905",
+  "total_systems": 10,
+  "fleet_metrics": {
+    "average_health_score": 12.57322290781892,
+    "average_efficiency": 81.27510858514664,
+    "total_power_output": 40498.700000000004,
+    "systems_with_faults": 0,
+    "systems_needing_attention": 10
+  },
+  "system_statuses": {
+    "INVERTER_01": {
+      "health_score": 0.0,
+      "efficiency": 65.07991333563601,
+      "temperature": 49.8,
+      "power_output": 1036.3,
+      "fault_codes": [],
+      "performance_trend": "declining"
+    },
+    "INVERTER_09": {
+      "health_score": 0.0,
+      "efficiency": 95.91844714638448,
+      "temperature": 52.6,
+      "power_output": 30172.5,
+      "fault_codes": [],
+      "performance_trend": "stable"
+    },
+    "INVERTER_04": {
+      "health_score": 7.8636449665009,
+      "efficiency": 76.43359276152152,
+      "temperature": 49.5,
+      "power_output": 1238.4,
+      "fault_codes": [],
+      "performance_trend": "declining"
+    },
+    "INVERTER_06": {
+      "health_score": 25.07738577873289,
+      "efficiency": 85.8825703701918,
+      "temperature": 49.6,
+      "power_output": 1068.8,
+      "fault_codes": [],
+      "performance_trend": "declining"
+    },
+    "INVERTER_07": {
+      "health_score": 37.095512229077514,
+      "efficiency": 90.17966531404252,
+      "temperature": 50.0,
+      "power_output": 1273.4,
+      "fault_codes": [],
+      "performance_trend": "declining"
+    },
+    "INVERTER_05": {
+      "health_score": 30.819996139406285,
+      "efficiency": 100.0,
+      "temperature": 49.6,
+      "power_output": 1111.0,
+      "fault_codes": [],
+      "performance_trend": "stable"
+    },
+    "INVERTER_02": {
+      "health_score": 0.0,
+      "efficiency": 62.38082581211791,
+      "temperature": 50.0,
+      "power_output": 1079.6,
+      "fault_codes": [],
+      "performance_trend": "declining"
+    },
+    "INVERTER_03": {
+      "health_score": 0.0,
+      "efficiency": 62.900244671045336,
+      "temperature": 49.2,
+      "power_output": 1303.4,
+      "fault_codes": [],
+      "performance_trend": "declining"
+    },
+    "INVERTER_10": {
+      "health_score": 21.00471253384812,
+      "efficiency": 100.0,
+      "temperature": 57.3,
+      "power_output": 1152.8,
+      "fault_codes": [],
+      "performance_trend": "stable"
+    },
+    "INVERTER_08": {
+      "health_score": 3.8709774306234976,
+      "efficiency": 73.97582644052692,
+      "temperature": 49.5,
+      "power_output": 1062.5,
+      "fault_codes": [],
+      "performance_trend": "declining"
+    }
+  }
+}

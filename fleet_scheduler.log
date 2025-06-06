@@ -1,0 +1,128 @@
+2025-06-06 19:43:33,217 - __main__ - INFO - Automated Fleet Scheduler initialized
+2025-06-06 19:43:33,217 - __main__ - INFO - Starting monitoring loop
+2025-06-06 19:43:33,217 - __main__ - INFO - Starting scheduler loop
+2025-06-06 19:43:33,217 - __main__ - INFO - Automated fleet monitoring and scheduling started
+2025-06-06 19:43:33,217 - __main__ - INFO - Scanning 21 inverter systems
+2025-06-06 19:43:33,244 - __main__ - ERROR - Error in predictive analysis for INVERTER: "['AMTemp3(℃)'] not in index"
+2025-06-06 19:43:33,261 - __main__ - ERROR - Error in predictive analysis for INVERTER: "['AMTemp3(℃)'] not in index"
+2025-06-06 19:43:33,284 - __main__ - ERROR - Error in predictive analysis for INVERTER: "['AMTemp3(℃)'] not in index"
+2025-06-06 19:43:33,302 - __main__ - ERROR - Error in predictive analysis for INVERTER: "['AMTemp3(℃)'] not in index"
+2025-06-06 19:43:33,322 - __main__ - ERROR - Error in predictive analysis for INVERTER: "['AMTemp3(℃)'] not in index"
+2025-06-06 19:43:33,342 - __main__ - ERROR - Error in predictive analysis for INVERTER: "['AMTemp3(℃)'] not in index"
+2025-06-06 19:43:33,361 - __main__ - ERROR - Error in predictive analysis for INVERTER: "['AMTemp3(℃)'] not in index"
+2025-06-06 19:43:33,380 - __main__ - ERROR - Error in predictive analysis for INVERTER: "['AMTemp3(℃)'] not in index"
+2025-06-06 19:43:33,403 - __main__ - ERROR - Error in predictive analysis for INVERTER: "['AMTemp3(℃)'] not in index"
+2025-06-06 19:43:33,424 - __main__ - ERROR - Error in predictive analysis for INVERTER: "['AMTemp3(℃)'] not in index"
+2025-06-06 19:43:33,444 - __main__ - ERROR - Error in predictive analysis for INVERTER: "['AMTemp3(℃)'] not in index"
+2025-06-06 19:43:33,461 - __main__ - ERROR - Error in predictive analysis for INVERTER: "['AMTemp3(℃)'] not in index"
+2025-06-06 19:43:33,478 - __main__ - ERROR - Error in predictive analysis for INVERTER: "['AMTemp3(℃)'] not in index"
+2025-06-06 19:43:33,496 - __main__ - ERROR - Error in predictive analysis for INVERTER: "['AMTemp3(℃)'] not in index"
+2025-06-06 19:43:33,515 - __main__ - ERROR - Error in predictive analysis for INVERTER: "['AMTemp3(℃)'] not in index"
+2025-06-06 19:43:33,530 - __main__ - ERROR - Error in predictive analysis for INVERTER: "['AMTemp3(℃)'] not in index"
+2025-06-06 19:43:33,547 - __main__ - ERROR - Error in predictive analysis for INVERTER: "['AMTemp3(℃)'] not in index"
+2025-06-06 19:43:33,565 - __main__ - ERROR - Error in predictive analysis for INVERTER: "['AMTemp3(℃)'] not in index"
+2025-06-06 19:43:33,581 - __main__ - ERROR - Error in predictive analysis for INVERTER: "['AMTemp3(℃)'] not in index"
+2025-06-06 19:43:33,596 - __main__ - ERROR - Error in predictive analysis for INVERTER: "['AMTemp3(℃)'] not in index"
+2025-06-06 19:43:33,617 - __main__ - ERROR - Error in predictive analysis for INVERTER: "['AMTemp3(℃)'] not in index"
+2025-06-06 19:43:33,618 - __main__ - INFO - Fleet summary generated: fleet_summary_20250606_194333.json
+2025-06-06 19:44:43,277 - __main__ - INFO - Automated fleet monitoring stopped
+2025-06-06 19:47:20,028 - __main__ - INFO - Automated Fleet Scheduler initialized
+2025-06-06 19:47:20,028 - __main__ - INFO - Starting monitoring loop
+2025-06-06 19:47:20,028 - __main__ - INFO - Starting scheduler loop
+2025-06-06 19:47:20,028 - __main__ - INFO - Automated fleet monitoring and scheduling started
+2025-06-06 19:47:20,029 - __main__ - INFO - Scanning 21 inverter systems
+2025-06-06 19:47:20,053 - __main__ - ERROR - Error in predictive analysis for INVERTER: "['AMTemp3(℃)'] not in index"
+2025-06-06 19:47:20,072 - __main__ - ERROR - Error in predictive analysis for INVERTER: "['AMTemp3(℃)'] not in index"
+2025-06-06 19:47:20,089 - __main__ - ERROR - Error in predictive analysis for INVERTER: "['AMTemp3(℃)'] not in index"
+2025-06-06 19:47:20,108 - __main__ - ERROR - Error in predictive analysis for INVERTER: "['AMTemp3(℃)'] not in index"
+2025-06-06 19:47:20,127 - __main__ - ERROR - Error in predictive analysis for INVERTER: "['AMTemp3(℃)'] not in index"
+2025-06-06 19:47:20,146 - __main__ - ERROR - Error in predictive analysis for INVERTER: "['AMTemp3(℃)'] not in index"
+2025-06-06 19:47:20,165 - __main__ - ERROR - Error in predictive analysis for INVERTER: "['AMTemp3(℃)'] not in index"
+2025-06-06 19:47:20,183 - __main__ - ERROR - Error in predictive analysis for INVERTER: "['AMTemp3(℃)'] not in index"
+2025-06-06 19:47:20,202 - __main__ - ERROR - Error in predictive analysis for INVERTER: "['AMTemp3(℃)'] not in index"
+2025-06-06 19:47:20,219 - __main__ - ERROR - Error in predictive analysis for INVERTER: "['AMTemp3(℃)'] not in index"
+2025-06-06 19:47:20,238 - __main__ - ERROR - Error in predictive analysis for INVERTER: "['AMTemp3(℃)'] not in index"
+2025-06-06 19:47:20,255 - __main__ - ERROR - Error in predictive analysis for INVERTER: "['AMTemp3(℃)'] not in index"
+2025-06-06 19:47:20,271 - __main__ - ERROR - Error in predictive analysis for INVERTER: "['AMTemp3(℃)'] not in index"
+2025-06-06 19:47:20,289 - __main__ - ERROR - Error in predictive analysis for INVERTER: "['AMTemp3(℃)'] not in index"
+2025-06-06 19:47:20,309 - __main__ - ERROR - Error in predictive analysis for INVERTER: "['AMTemp3(℃)'] not in index"
+2025-06-06 19:47:20,324 - __main__ - ERROR - Error in predictive analysis for INVERTER: "['AMTemp3(℃)'] not in index"
+2025-06-06 19:47:20,342 - __main__ - ERROR - Error in predictive analysis for INVERTER: "['AMTemp3(℃)'] not in index"
+2025-06-06 19:47:20,358 - __main__ - ERROR - Error in predictive analysis for INVERTER: "['AMTemp3(℃)'] not in index"
+2025-06-06 19:47:20,378 - __main__ - ERROR - Error in predictive analysis for INVERTER: "['AMTemp3(℃)'] not in index"
+2025-06-06 19:47:20,393 - __main__ - ERROR - Error in predictive analysis for INVERTER: "['AMTemp3(℃)'] not in index"
+2025-06-06 19:47:20,411 - __main__ - ERROR - Error in predictive analysis for INVERTER: "['AMTemp3(℃)'] not in index"
+2025-06-06 19:47:20,412 - __main__ - INFO - Fleet summary generated: fleet_summary_20250606_194720.json
+2025-06-06 19:48:12,057 - __main__ - INFO - Automated fleet monitoring stopped
+2025-06-06 19:50:33,703 - __main__ - INFO - Automated Fleet Scheduler initialized
+2025-06-06 19:50:33,703 - __main__ - INFO - Starting monitoring loop
+2025-06-06 19:50:33,703 - __main__ - INFO - Starting scheduler loop
+2025-06-06 19:50:33,703 - __main__ - INFO - Automated fleet monitoring and scheduling started
+2025-06-06 19:50:33,703 - __main__ - INFO - Scanning 21 inverter systems
+2025-06-06 19:50:33,730 - __main__ - INFO - Alert queued and processed: INVERTER_efficiency_1749214233
+2025-06-06 19:50:33,730 - __main__ - INFO - Alert queued and processed: INVERTER_health_1749214233
+2025-06-06 19:50:34,074 - __main__ - INFO - Fleet summary generated: fleet_summary_20250606_195034.json
+2025-06-06 19:51:43,770 - __main__ - INFO - Automated fleet monitoring stopped
+2025-06-06 19:55:57,796 - __main__ - INFO - Automated Fleet Scheduler initialized
+2025-06-06 19:55:57,797 - __main__ - INFO - Starting monitoring loop
+2025-06-06 19:55:57,797 - __main__ - INFO - Starting scheduler loop
+2025-06-06 19:55:57,797 - __main__ - INFO - Automated fleet monitoring and scheduling started
+2025-06-06 19:55:57,797 - __main__ - INFO - Scanning 21 inverter systems
+2025-06-06 19:55:57,825 - __main__ - INFO - Alert queued and processed: INVERTER_01_efficiency_1749214557
+2025-06-06 19:55:57,826 - __main__ - INFO - Alert queued and processed: INVERTER_01_health_1749214557
+2025-06-06 19:55:57,826 - __main__ - INFO - Alert queued and processed: INVERTER_01_string_imbalance_1749214557
+2025-06-06 19:55:57,851 - __main__ - INFO - Alert queued and processed: INVERTER_09_health_1749214557
+2025-06-06 19:55:57,852 - __main__ - INFO - Alert queued and processed: INVERTER_09_string_imbalance_1749214557
+2025-06-06 19:55:57,877 - __main__ - INFO - Alert queued and processed: INVERTER_04_efficiency_1749214557
+2025-06-06 19:55:57,878 - __main__ - INFO - Alert queued and processed: INVERTER_04_health_1749214557
+2025-06-06 19:55:57,878 - __main__ - INFO - Alert queued and processed: INVERTER_04_string_imbalance_1749214557
+2025-06-06 19:55:57,902 - __main__ - INFO - Alert queued and processed: INVERTER_06_health_1749214557
+2025-06-06 19:55:57,902 - __main__ - INFO - Alert queued and processed: INVERTER_06_string_imbalance_1749214557
+2025-06-06 19:55:58,018 - __main__ - INFO - Alert queued and processed: INVERTER_07_health_1749214558
+2025-06-06 19:55:58,018 - __main__ - INFO - Alert queued and processed: INVERTER_07_string_imbalance_1749214558
+2025-06-06 19:55:58,075 - __main__ - INFO - Alert queued and processed: INVERTER_05_health_1749214558
+2025-06-06 19:55:58,075 - __main__ - INFO - Alert queued and processed: INVERTER_05_string_imbalance_1749214558
+2025-06-06 19:55:58,100 - __main__ - INFO - Alert queued and processed: INVERTER_02_efficiency_1749214558
+2025-06-06 19:55:58,100 - __main__ - INFO - Alert queued and processed: INVERTER_02_health_1749214558
+2025-06-06 19:55:58,101 - __main__ - INFO - Alert queued and processed: INVERTER_02_string_imbalance_1749214558
+2025-06-06 19:55:58,154 - __main__ - INFO - Alert queued and processed: INVERTER_03_efficiency_1749214558
+2025-06-06 19:55:58,154 - __main__ - INFO - Alert queued and processed: INVERTER_03_health_1749214558
+2025-06-06 19:55:58,155 - __main__ - INFO - Alert queued and processed: INVERTER_03_string_imbalance_1749214558
+2025-06-06 19:55:58,199 - __main__ - INFO - Alert queued and processed: INVERTER_10_health_1749214558
+2025-06-06 19:55:58,199 - __main__ - INFO - Alert queued and processed: INVERTER_10_string_imbalance_1749214558
+2025-06-06 19:55:58,236 - __main__ - INFO - Alert queued and processed: INVERTER_08_efficiency_1749214558
+2025-06-06 19:55:58,237 - __main__ - INFO - Alert queued and processed: INVERTER_08_health_1749214558
+2025-06-06 19:55:58,238 - __main__ - INFO - Alert queued and processed: INVERTER_08_string_imbalance_1749214558
+2025-06-06 19:55:58,240 - __main__ - INFO - Fleet summary generated: fleet_summary_20250606_195558.json
+2025-06-06 19:57:07,858 - __main__ - INFO - Automated fleet monitoring stopped
+2025-06-06 19:59:44,970 - automated_fleet_scheduler - INFO - Automated Fleet Scheduler initialized
+2025-06-06 19:59:44,970 - automated_fleet_scheduler - INFO - Starting monitoring loop
+2025-06-06 19:59:44,970 - automated_fleet_scheduler - INFO - Starting scheduler loop
+2025-06-06 19:59:44,970 - automated_fleet_scheduler - INFO - Automated fleet monitoring and scheduling started
+2025-06-06 19:59:44,971 - automated_fleet_scheduler - INFO - Scanning 21 inverter systems
+2025-06-06 19:59:45,000 - automated_fleet_scheduler - INFO - Alert queued and processed: INVERTER_01_efficiency_1749214784
+2025-06-06 19:59:45,000 - automated_fleet_scheduler - INFO - Alert queued and processed: INVERTER_01_health_1749214784
+2025-06-06 19:59:45,001 - automated_fleet_scheduler - INFO - Alert queued and processed: INVERTER_01_string_imbalance_1749214784
+2025-06-06 19:59:45,024 - automated_fleet_scheduler - INFO - Alert queued and processed: INVERTER_09_health_1749214785
+2025-06-06 19:59:45,025 - automated_fleet_scheduler - INFO - Alert queued and processed: INVERTER_09_string_imbalance_1749214785
+2025-06-06 19:59:45,047 - automated_fleet_scheduler - INFO - Alert queued and processed: INVERTER_04_efficiency_1749214785
+2025-06-06 19:59:45,048 - automated_fleet_scheduler - INFO - Alert queued and processed: INVERTER_04_health_1749214785
+2025-06-06 19:59:45,048 - automated_fleet_scheduler - INFO - Alert queued and processed: INVERTER_04_string_imbalance_1749214785
+2025-06-06 19:59:45,069 - automated_fleet_scheduler - INFO - Alert queued and processed: INVERTER_06_health_1749214785
+2025-06-06 19:59:45,070 - automated_fleet_scheduler - INFO - Alert queued and processed: INVERTER_06_string_imbalance_1749214785
+2025-06-06 19:59:45,189 - automated_fleet_scheduler - INFO - Alert queued and processed: INVERTER_07_health_1749214785
+2025-06-06 19:59:45,190 - automated_fleet_scheduler - INFO - Alert queued and processed: INVERTER_07_string_imbalance_1749214785
+2025-06-06 19:59:45,246 - automated_fleet_scheduler - INFO - Alert queued and processed: INVERTER_05_health_1749214785
+2025-06-06 19:59:45,247 - automated_fleet_scheduler - INFO - Alert queued and processed: INVERTER_05_string_imbalance_1749214785
+2025-06-06 19:59:45,270 - automated_fleet_scheduler - INFO - Alert queued and processed: INVERTER_02_efficiency_1749214785
+2025-06-06 19:59:45,271 - automated_fleet_scheduler - INFO - Alert queued and processed: INVERTER_02_health_1749214785
+2025-06-06 19:59:45,271 - automated_fleet_scheduler - INFO - Alert queued and processed: INVERTER_02_string_imbalance_1749214785
+2025-06-06 19:59:45,325 - automated_fleet_scheduler - INFO - Alert queued and processed: INVERTER_03_efficiency_1749214785
+2025-06-06 19:59:45,326 - automated_fleet_scheduler - INFO - Alert queued and processed: INVERTER_03_health_1749214785
+2025-06-06 19:59:45,326 - automated_fleet_scheduler - INFO - Alert queued and processed: INVERTER_03_string_imbalance_1749214785
+2025-06-06 19:59:45,364 - automated_fleet_scheduler - INFO - Alert queued and processed: INVERTER_10_health_1749214785
+2025-06-06 19:59:45,365 - automated_fleet_scheduler - INFO - Alert queued and processed: INVERTER_10_string_imbalance_1749214785
+2025-06-06 19:59:45,402 - automated_fleet_scheduler - INFO - Alert queued and processed: INVERTER_08_efficiency_1749214785
+2025-06-06 19:59:45,403 - automated_fleet_scheduler - INFO - Alert queued and processed: INVERTER_08_health_1749214785
+2025-06-06 19:59:45,403 - automated_fleet_scheduler - INFO - Alert queued and processed: INVERTER_08_string_imbalance_1749214785
+2025-06-06 19:59:45,405 - automated_fleet_scheduler - INFO - Fleet summary generated: fleet_summary_20250606_195945.json
